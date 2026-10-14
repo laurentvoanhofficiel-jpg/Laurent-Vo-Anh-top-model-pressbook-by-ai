@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Voanh Top Model Pressbook</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; background: #050510; color: #f1f5f9; min-height: 100vh; padding: 1rem 1rem 12rem; font-size: 14px; line-height: 1.5; }
+.wrap { max-width: 1200px; margin: 0 auto; }
+header { text-align: center; padding: 1.5rem 0 1rem; border-bottom: 1px solid #1e293b; margin-bottom: 1.5rem; position: relative; }
+header::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 50px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37, transparent); }
+.kata { font-size: 0.68rem; letter-spacing: 0.5em; color: #d4af37; opacity: 0.85; text-transform: uppercase; margin-bottom: 0.6rem; }
+h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.4rem; font-weight: 400; margin-bottom: 0.4rem; background: linear-gradient(135deg, #d4af37 0%, #f4d47a 30%, #e8c4b8 60%, #c8a8d8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.05; }
+.sub { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 0.9rem; color: #8a8896; }
+.banner { background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(200,168,216,0.05)); border: 1px solid #1e293b; border-left: 2px solid #d4af37; border-radius: 4px; padding: 1rem 1.15rem; font-size: 0.78rem; color: #94a3b8; margin-bottom: 1.2rem; line-height: 1.65; }
+.banner strong { color: #f1f5f9; font-weight: 600; }
+.banner .hl-gold { color: #f4d47a; } .banner .hl-violet { color: #c8a8d8; } .banner .hl-mint { color: #a8d8c8; } .banner .hl-rose { color: #e8b4b8; }
+.card { background: #0a0a18; border: 1px solid #1e293b; border-radius: 4px; margin-bottom: 1rem; overflow: hidden; }
+.card-head { padding: 0.85rem 1rem; border-bottom: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: #e2e8f0; font-weight: 600; font-family: 'Playfair Display', Georgia, serif; }
+.card-head .badge { font-size: 0.6rem; padding: 0.15rem 0.5rem; border: 1px solid #b8860b; color: #f4d47a; border-radius: 2px; letter-spacing: 0.1em; font-family: -apple-system, sans-serif; }
+.card-body { padding: 1rem; }
+textarea, input[type=text], input[type=password] { width: 100%; background: #05050e; border: 1px solid #1e293b; border-radius: 4px; padding: 0.7rem 0.85rem; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.78rem; color: #f1f5f9; outline: none; }
+textarea:focus, input:focus { border-color: #b8860b; box-shadow: 0 0 0 3px rgba(212,175,55,0.12); }
+textarea { min-height: 80px; resize: vertical; line-height: 1.55; }
+.btn { width: 100%; padding: 0.85rem; border-radius: 4px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border: 1px solid; transition: all 0.15s; font-family: 'Playfair Display', Georgia, serif; }
+.btn-gold { background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(232,196,184,0.1)); border-color: #b8860b; color: #f4d47a; }
+.btn-gold:hover:not(:disabled) { background: rgba(212,175,55,0.22); }
+.btn-gold:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-red { background: transparent; border-color: #b91c1c; color: #f87171; }
+.btn-slate { background: transparent; border-color: #334155; color: #94a3b8; font-size: 0.68rem; padding: 0.55rem 0.7rem; letter-spacing: 0.1em; }
+.btn-slate:hover { color: #f4d47a; border-color: #b8860b; }
+.btn-xs { font-size: 0.58rem; padding: 0.3rem 0.55rem; width: auto; letter-spacing: 0.08em; }
+.row { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+.row > * { flex: 1; min-width: 100px; }
+.row > .no-flex { flex: 0 0 auto; min-width: auto; }
+.status-line { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.85rem; background: #05050e; border: 1px solid #1e293b; border-radius: 4px; font-size: 0.75rem; color: #64748b; margin-top: 0.7rem; }
+.status-line.ok { background: rgba(74,157,106,0.08); border-color: #2d5a3d; color: #7ad19c; }
+.status-line.err { background: rgba(239,68,68,0.08); border-color: #7f1d1d; color: #f87171; }
+.status-line .dot { width: 6px; height: 6px; border-radius: 50%; background: #475569; flex-shrink: 0; }
+.status-line.ok .dot { background: #7ad19c; box-shadow: 0 0 6px #7ad19c; }
+.status-line.err .dot { background: #ef4444; }
+.hint { font-size: 0.7rem; color: #64748b; margin-top: 0.5rem; }
+.hint a { color: #f4d47a; text-decoration: none; border-bottom: 1px dotted #b8860b; }
+.drop { border: 2px dashed #334155; border-radius: 4px; padding: 1.5rem 1rem; text-align: center; cursor: pointer; position: relative; transition: all 0.15s; }
+.drop:hover { border-color: #b8860b; background: rgba(212,175,55,0.03); }
+.drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.drop .icon { font-size: 2rem; opacity: 0.5; margin-bottom: 0.4rem; }
+.drop .txt { font-size: 0.82rem; color: #94a3b8; }
+.drop .txt strong { color: #f4d47a; }
+.drop .sub2 { font-size: 0.68rem; color: #475569; margin-top: 0.4rem; font-family: ui-monospace, monospace; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.5rem; margin-top: 0.8rem; }
+.thumb { position: relative; border-radius: 4px; overflow: hidden; border: 1px solid #1e293b; aspect-ratio: 3/4; background: #000; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb .rm { position: absolute; top: 0.3rem; right: 0.3rem; background: rgba(220,38,38,0.85); color: #fff; border: none; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; cursor: pointer; }
+.thumb .lbl { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.2rem 0.4rem; background: linear-gradient(transparent, rgba(5,5,16,0.92)); font-size: 0.52rem; font-family: ui-monospace, monospace; color: #f4d47a; letter-spacing: 0.08em; }
+.phase { background: #0a0a18; border: 1px solid #1e293b; border-left: 2px solid #c8a8d8; border-radius: 4px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: none; }
+.phase.visible { display: block; }
+.steps { display: flex; gap: 0.3rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+.step { flex: 1; min-width: 55px; padding: 0.4rem 0.25rem; text-align: center; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; background: #05050e; border: 1px solid #1e293b; border-radius: 4px; color: #475569; }
+.step.active { background: rgba(212,175,55,0.08); border-color: #b8860b; color: #f4d47a; }
+.step.done { background: rgba(74,157,106,0.08); border-color: #2d5a3d; color: #7ad19c; }
+.phase-info { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; font-size: 0.72rem; font-family: ui-monospace, monospace; color: #94a3b8; }
+.queue { display: none; background: #0a0a18; border: 1px solid #1e293b; border-left: 2px solid #c8a8d8; border-radius: 4px; padding: 0.7rem 0.9rem; margin-bottom: 1rem; font-size: 0.72rem; font-family: ui-monospace, monospace; }
+.queue.visible { display: block; }
+.session-view { display: none; margin-top: 1.5rem; }
+.session-view.visible { display: block; }
+.session-header { background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(200,168,216,0.04)); border: 1px solid #1e293b; border-left: 2px solid #d4af37; border-radius: 4px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.session-header .sh-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; color: #f4d47a; }
+.session-header .sh-sub { font-size: 0.68rem; color: #64748b; font-family: ui-monospace, monospace; }
+.session-ref-thumb { width: 40px; height: 54px; border-radius: 3px; overflow: hidden; border: 1px solid #b8860b; flex-shrink: 0; }
+.session-ref-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tabs { display: flex; gap: 0.3rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.tab { flex: 1; min-width: 80px; padding: 0.55rem 0.4rem; text-align: center; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; background: #0a0a18; border: 1px solid #1e293b; border-radius: 4px; color: #64748b; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+.tab:hover { color: #e2e8f0; border-color: #334155; }
+.tab.active { background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(200,168,216,0.06)); border-color: #b8860b; color: #f4d47a; }
+.tab .tab-count { font-size: 0.52rem; opacity: 0.7; margin-left: 0.2rem; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+.photo { background: #0a0a18; border: 1px solid #1e293b; border-radius: 4px; overflow: hidden; transition: border-color 0.2s; }
+.photo:hover { border-color: #334155; }
+.photo-img { aspect-ratio: 9/16; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
+.photo-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.photo-img .load { width: 100%; height: 100%; background: #05050e; display: flex; align-items: center; justify-content: center; color: #475569; font-size: 0.72rem; font-family: ui-monospace, monospace; position: relative; overflow: hidden; }
+.photo-img .load::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(212,175,55,0.08) 50%, transparent 70%); animation: shim 1.8s linear infinite; }
+@keyframes shim { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.photo-img .err { width: 100%; height: 100%; background: rgba(127,29,29,0.2); display: flex; align-items: center; justify-content: center; color: #f87171; font-size: 0.72rem; }
+.photo-img .photo-ref-badge { position: absolute; top: 0.4rem; left: 0.4rem; background: rgba(5,5,16,0.85); border: 1px solid #b8860b; color: #f4d47a; font-size: 0.55rem; padding: 0.1rem 0.4rem; border-radius: 2px; font-family: ui-monospace, monospace; letter-spacing: 0.08em; }
+.photo-img .photo-plan-badge { position: absolute; top: 0.4rem; right: 0.4rem; background: rgba(5,5,16,0.85); border: 1px solid #c8a8d8; color: #c8a8d8; font-size: 0.55rem; padding: 0.1rem 0.4rem; border-radius: 2px; font-family: ui-monospace, monospace; letter-spacing: 0.08em; }
+.photo-meta { padding: 0.7rem; border-top: 1px solid #1e293b; }
+.pbadge { display: inline-block; font-size: 0.52rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.12rem 0.4rem; border-radius: 2px; margin-right: 0.3rem; margin-bottom: 0.4rem; font-weight: 700; border: 1px solid; }
+.pbadge.fashion { background: rgba(232,180,184,0.1); color: #e8b4b8; border-color: #7a3a3d; }
+.pbadge.artists { background: rgba(168,216,200,0.1); color: #a8d8c8; border-color: #2d5a52; }
+.pbadge.festive { background: rgba(244,212,122,0.1); color: #f4d47a; border-color: #b8860b; }
+.pbadge.luxury { background: rgba(212,175,55,0.12); color: #d4af37; border-color: #8a6a0a; }
+.pbadge.posters { background: rgba(200,168,216,0.1); color: #c8a8d8; border-color: #5b3a7a; }
+.pbadge.flyers { background: rgba(232,123,53,0.1); color: #f0a060; border-color: #7a3a1e; }
+.pbadge.music { background: rgba(139,95,196,0.1); color: #a880d8; border-color: #4a2d6b; }
+.pbadge.sports { background: rgba(106,184,176,0.1); color: #6ab8b0; border-color: #2d5a52; }
+.pbadge.paintings { background: rgba(212,175,55,0.1); color: #e5c15a; border-color: #8a6a0a; }
+.ptitle { font-family: 'Playfair Display', Georgia, serif; font-size: 0.9rem; color: #f4d47a; margin-bottom: 0.15rem; letter-spacing: 0.01em; }
+.psub { font-size: 0.62rem; color: #64748b; font-family: ui-monospace, monospace; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+.pblock { background: #05050e; border: 1px solid #1e293b; border-radius: 4px; padding: 0.5rem; margin-bottom: 0.4rem; position: relative; }
+.pblock.video { border-left: 2px solid #c8a8d8; }
+.plabel { font-size: 0.52rem; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; font-family: ui-monospace, monospace; margin-bottom: 0.25rem; }
+.pblock.video .plabel { color: #c8a8d8; }
+.ptext { font-size: 0.65rem; color: #94a3b8; font-family: ui-monospace, monospace; line-height: 1.5; max-height: 100px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; }
+.pcopy { position: absolute; top: 0.3rem; right: 0.3rem; font-size: 0.52rem; padding: 0.1rem 0.35rem; border: 1px solid #334155; border-radius: 2px; background: transparent; color: #64748b; cursor: pointer; }
+.pcopy:hover { color: #f4d47a; border-color: #b8860b; }
+.popen { display: block; text-align: center; margin-top: 0.5rem; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.15em; padding: 0.35rem; border: 1px solid #334155; border-radius: 4px; color: #94a3b8; text-decoration: none; font-family: 'Playfair Display', Georgia, serif; }
+.popen:hover { color: #f4d47a; border-color: #b8860b; }
+.sessions-list { max-height: 220px; overflow-y: auto; margin-top: 0.5rem; }
+.session-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.7rem; background: #05050e; border: 1px solid #1e293b; border-radius: 4px; margin-bottom: 0.35rem; font-size: 0.72rem; cursor: pointer; }
+.session-row.current { border-color: #b8860b; background: rgba(212,175,55,0.05); }
+.session-row .sr-thumb { width: 32px; height: 42px; border-radius: 2px; overflow: hidden; border: 1px solid #334155; flex-shrink: 0; background: #000; }
+.session-row .sr-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.session-row .sr-meta { flex: 1; min-width: 0; }
+.session-row .sr-title { color: #e2e8f0; font-family: 'Playfair Display', Georgia, serif; font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.session-row .sr-sub { color: #64748b; font-size: 0.6rem; font-family: ui-monospace, monospace; }
+.session-row .sr-actions { display: flex; gap: 0.25rem; flex-shrink: 0; }
+.panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; }
+.handle { background: #0a0a18; border-top: 2px solid #b8860b; padding: 0.55rem 1rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+.handle .left { display: flex; align-items: center; gap: 0.6rem; min-width: 0; flex: 1; }
+.handle .toggle { font-family: ui-monospace, monospace; font-size: 0.72rem; color: #f4d47a; letter-spacing: 0.1em; flex-shrink: 0; }
+.handle .latest { font-size: 0.72rem; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.handle .actions { display: flex; gap: 0.3rem; }
+.handle .actions button { font-size: 0.6rem; padding: 0.2rem 0.5rem; border: 1px solid #334155; border-radius: 3px; background: transparent; color: #64748b; cursor: pointer; }
+.handle .actions button:hover { color: #f4d47a; border-color: #b8860b; }
+.panel-content { background: #05050e; border-top: 1px solid #1e293b; max-height: 60vh; overflow-y: auto; }
+.panel-content.hidden { display: none; }
+.human-log { max-height: 100px; overflow-y: auto; padding: 0.6rem 1rem; border-bottom: 1px solid #1e293b; font-family: ui-monospace, monospace; font-size: 0.7rem; }
+.human-log > div { margin-bottom: 0.2rem; }
+.human-log .t { color: #475569; } .human-log .m { color: #7ad19c; }
+.debug-log { max-height: 240px; overflow-y: auto; padding: 0.6rem 1rem; font-family: ui-monospace, monospace; font-size: 0.68rem; }
+.debug-log > div { margin-bottom: 0.15rem; word-break: break-word; }
+.debug-log .t { color: #475569; } .debug-log .info { color: #94a3b8; } .debug-log .ok { color: #7ad19c; } .debug-log .warn { color: #f4d47a; } .debug-log .err { color: #f87171; } .debug-log .api { color: #c8a8d8; }
+.toast { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%) translateY(-120px); background: #0a0a18; border: 1px solid #1e293b; border-left: 3px solid #d4af37; border-radius: 4px; padding: 0.75rem 1.2rem; font-size: 0.8rem; z-index: 1000; opacity: 0; transition: transform 0.3s, opacity 0.3s; max-width: 90vw; text-align: center; }
+.toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.success { border-left-color: #7ad19c; } .toast.error { border-left-color: #ef4444; } .toast.warn { border-left-color: #f4d47a; }
+.status-bar { position: fixed; bottom: 60px; left: 0; right: 0; background: #0a0a18; border-top: 1px solid #1e293b; padding: 0.5rem 1rem; font-size: 0.7rem; font-family: ui-monospace, monospace; color: #f1f5f9; display: flex; align-items: center; gap: 0.5rem; transform: translateY(100%); transition: transform 0.3s; z-index: 30; }
+.status-bar.visible { transform: translateY(0); }
+.status-bar .spinner { width: 12px; height: 12px; border: 2px solid rgba(212,175,55,0.2); border-top-color: #d4af37; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a0a18; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+.hidden { display: none !important; }
+.empty-state { text-align: center; padding: 2rem 1rem; color: #475569; font-size: 0.78rem; font-family: 'Playfair Display', Georgia, serif; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="kata">✦ Voanh ✦ Top Model Pressbook ✦</div>
+<h1>Voanh Top Model Pressbook</h1>
+<p class="sub">Votre visage préservé · 120 photos · 9 univers · Mode · Art · Cinéma · Musique · Sports · Peinture</p>
+</header>
+
+<div class="banner">
+<strong>Le pressbook :</strong> vous ajoutez <strong class="hl-gold">votre photo</strong>. L'IA analyse votre visage en profondeur et le <strong class="hl-rose">préserve à l'identique</strong> dans chaque photo via l'image de référence transmise à Agnès (<em>mode image+strength avec bascule automatique si non supporté</em>). <strong class="hl-mint">Cadrage varié</strong> : plan américain, gros plan, plan large, contre-plongée — chaque artiste impose son plan signature, votre visage reste reconnaissable. Par photo : <strong class="hl-violet">120 transformations</strong> en 9 onglets.
+</div>
+
+<section class="card">
+<div class="card-head"><span>🔑 Clés API Agnès</span><span class="badge" id="keyBadge">0 validée</span></div>
+<div class="card-body">
+<textarea id="keysInput" placeholder="Collez vos clés API ici, une par ligne :&#10;sk-xxxxxxxxxxxx" autocomplete="off" spellcheck="false"></textarea>
+<div class="row">
+<button class="btn btn-gold" id="validateBtn">🔐 Valider et enregistrer</button>
+<button class="btn btn-slate no-flex" id="clearKeysBtn">Effacer</button>
+</div>
+<div class="status-line" id="keyStatus"><span class="dot"></span><span id="keyStatusText">Aucune clé enregistrée</span></div>
+<div class="hint">Clé gratuite sur <a href="https://platform.agnes-ai.com" target="_blank">platform.agnes-ai.com</a> → Settings → API Keys. Plus de clés = plus de vitesse, toutes en parallèle.</div>
+</div>
+</section>
+
+<section class="card">
+<div class="card-head"><span>🖼️ Photo de référence</span><span class="badge" id="refBadge">0 photo</span></div>
+<div class="card-body">
+<label class="drop">
+<input type="file" accept="image/*" multiple id="refInput">
+<div class="icon">📸</div>
+<div class="txt"><strong>Cliquez pour ajouter votre photo</strong><br>Une ou plusieurs photos de vous (visage bien visible)</div>
+<div class="sub2">120 transformations générées par photo de référence.</div>
+</label>
+<div class="thumbs" id="thumbs"></div>
+</div>
+</section>
+
+<section class="card">
+<div class="card-head"><span>📚 Sessions Pressbook</span><span class="badge" id="sessionsBadge">0 session</span></div>
+<div class="card-body">
+<div class="row">
+<button class="btn btn-slate" id="newSessionBtn">+ Nouvelle session</button>
+<button class="btn btn-slate" id="exportBtn">📤 Exporter</button>
+<button class="btn btn-slate no-flex" id="importBtn" style="position:relative;overflow:hidden;">📥 Importer<input type="file" accept=".json" id="importInput" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;"></button>
+</div>
+<div class="sessions-list" id="sessionsList"></div>
+<div class="hint" id="storageHint"></div>
+</div>
+</section>
+
+<button class="btn btn-gold" id="genBtn" disabled style="margin-bottom:1rem;">Lancer le pressbook</button>
+<button class="btn btn-red hidden" id="stopBtn" style="margin-bottom:1rem;">⏹ Arrêter</button>
+
+<div class="phase" id="phaseBar">
+<div class="steps">
+<div class="step" data-p="analyze">1 · Visage</div>
+<div class="step" data-p="agents">2 · Agents IA</div>
+<div class="step" data-p="fashion">3 · Mode</div>
+<div class="step" data-p="artists">4 · Art</div>
+<div class="step" data-p="festive">5 · Festif</div>
+<div class="step" data-p="luxury">6 · Luxe</div>
+<div class="step" data-p="posters">7 · Cinéma</div>
+<div class="step" data-p="flyers">8 · Flyers</div>
+<div class="step" data-p="music">9 · Musique</div>
+<div class="step" data-p="sports">10 · Sports</div>
+<div class="step" data-p="paintings">11 · Peinture</div>
+<div class="step" data-p="done">12 · Fini</div>
+</div>
+<div class="phase-info"><span id="phaseDetail">En attente</span><span id="phaseEta"></span></div>
+</div>
+
+<div class="queue" id="queue"></div>
+
+<div class="session-view" id="sessionView">
+<div class="session-header">
+<div class="session-ref-thumb" id="sessionRefThumb"></div>
+<div style="flex:1;min-width:0;">
+<div class="sh-title" id="sessionTitle">—</div>
+<div class="sh-sub" id="sessionSub">—</div>
+</div>
+<div style="text-align:right;">
+<div class="sh-sub" id="sessionProgress">—</div>
+</div>
+</div>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="photoGrid"></div>
+</div>
+
+</div>
+
+<div class="panel">
+<div class="handle" id="panelHandle">
+<div class="left">
+<span class="toggle" id="panelToggle">▼ CONSOLE</span>
+<span class="latest" id="humanLatest">Prêt.</span>
+</div>
+<div class="actions">
+<button id="copyConsoleBtn">Copier</button>
+<button id="clearConsoleBtn">Effacer</button>
+</div>
+</div>
+<div class="panel-content hidden" id="panelContent">
+<div class="human-log" id="humanLog"></div>
+<div class="debug-log" id="debugLog"></div>
+</div>
+</div>
+
+<div class="toast" id="toast"><span id="toastText">Message</span></div>
+<div class="status-bar" id="statusBar"><div class="spinner"></div><span id="statusText">Préparation…</span></div>
+
+<script>
+'use strict';
+
+// ============ CONFIG ============
+const API_BASE = 'https://apihub.agnes-ai.com/v1';
+const MODEL_TEXT = 'agnes-2.5-flash';
+const MODEL_IMAGE = 'agnes-image-2.1-flash';
+const IMAGE_SIZE = '1024x1792';
+const CONCURRENCY_PER_KEY = 2;
+const DELAY_PER_KEY_MS = 3400;
+const REF_API_MAX_SIDE = 800;    // image envoyée à l'API (basse résolution pour rapidité)
+const REF_DISPLAY_MAX = 1280;    // image conservée localement
+const THUMB_MAX_SIDE = 100;
+const STORAGE_KEYS = { keys: 'voanh_pb_keys_v2', sessions: 'voanh_pb_sessions_v2', current: 'voanh_pb_current_v2', refSupport: 'voanh_pb_ref_support_v2' };
+const DEBUG_MAX = 400;
+const QUOTA_LIMIT = 3_800_000;
+
+// ============ CATEGORIES (total 120) ============
+const CATEGORIES = [
+  { id: 'fashion',   label: 'Mode',        icon: '👗', count: 15, color: 'fashion' },
+  { id: 'artists',   label: 'Art',         icon: '🎞️', count: 15, color: 'artists' },
+  { id: 'festive',   label: 'Festif',      icon: '🎉', count: 10, color: 'festive' },
+  { id: 'luxury',    label: 'Luxe',        icon: '💎', count: 10, color: 'luxury' },
+  { id: 'posters',   label: 'Affiches',    icon: '🎬', count: 8,  color: 'posters' },
+  { id: 'flyers',    label: 'Flyers',      icon: '🎤', count: 7,  color: 'flyers' },
+  { id: 'music',     label: 'Musique',     icon: '🎸', count: 8,  color: 'music' },
+  { id: 'sports',    label: 'Sports & AM', icon: '🥋', count: 7,  color: 'sports' },
+  { id: 'paintings', label: 'Peintures',   icon: '🎨', count: 40, color: 'paintings' }
+];
+
+// ============ STATE ============
+const state = {
+  apiKeys: [],
+  referenceImages: [],       // versions pour l'API (800px)
+  referenceDisplay: [],      // versions pour affichage (1280px)
+  referenceThumbs: [],       // miniatures
+  sessions: [],
+  currentSession: null,
+  activeTab: 'fashion',
+  isRunning: false,
+  stopRequested: false,
+  completed: 0,
+  total: 0,
+  startTime: 0,
+  keyIndex: 0,
+  humanLog: [],
+  debugLog: [],
+  refSupport: 'unknown'      // 'yes' | 'no' | 'unknown'
+};
+
+// ============ UTILS ============
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const uid = () => 's_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7);
+
+function human(msg) {
+  state.humanLog.push({ t: new Date().toLocaleTimeString('fr-FR', { hour12: false }), m: msg });
+  if (state.humanLog.length > 80) state.humanLog.shift();
+  const el = $('humanLatest'); if (el) el.textContent = msg;
+  renderHuman();
+}
+function renderHuman() {
+  const el = $('humanLog'); if (!el) return;
+  el.innerHTML = state.humanLog.slice(-30).map(e => '<div><span class="t">' + e.t + '</span> <span class="m">' + esc(e.m) + '</span></div>').join('');
+  el.scrollTop = el.scrollHeight;
+}
+function debug(msg, level = 'info') {
+  state.debugLog.push({ t: new Date().toLocaleTimeString('fr-FR', { hour12: false }), m: msg, c: level });
+  if (state.debugLog.length > DEBUG_MAX) state.debugLog.shift();
+  renderDebug();
+}
+function renderDebug() {
+  const el = $('debugLog'); if (!el) return;
+  el.innerHTML = state.debugLog.slice(-200).map(e => '<div><span class="t">' + e.t + '</span> <span class="' + e.c + '">' + esc(e.m) + '</span></div>').join('');
+  el.scrollTop = el.scrollHeight;
+}
+function toast(msg, type = 'success', dur = 2500) {
+  const t = $('toast');
+  t.className = 'toast ' + type + ' visible';
+  $('toastText').textContent = msg;
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => { t.className = 'toast ' + type; }, dur);
+}
+function setStatus(txt) {
+  const b = $('statusBar');
+  if (txt) { b.classList.add('visible'); $('statusText').textContent = txt; }
+  else b.classList.remove('visible');
+}
+function setPhase(phase, detail, eta) {
+  const order = ['analyze','agents','fashion','artists','festive','luxury','posters','flyers','music','sports','paintings','done'];
+  const idx = order.indexOf(phase);
+  document.querySelectorAll('.step').forEach(el => {
+    const i = order.indexOf(el.dataset.p);
+    el.className = 'step' + (i < idx ? ' done' : i === idx ? ' active' : '');
+  });
+  $('phaseDetail').textContent = detail || '';
+  $('phaseEta').textContent = eta || '';
+}
+function fmtEta(s) { return s < 60 ? Math.round(s) + 's' : Math.floor(s / 60) + 'm ' + Math.round(s % 60) + 's'; }
+function getKey() {
+  if (state.apiKeys.length === 0) return '';
+  const k = state.apiKeys[state.keyIndex % state.apiKeys.length];
+  state.keyIndex++;
+  return k;
+}
+
+// ============ PHOTO ID ============
+function idFromUrl(url) {
+  if (!url || typeof url !== 'string') return null;
+  if (url.startsWith('data:')) return null;
+  try {
+    const u = new URL(url);
+    const segs = u.pathname.split('/').filter(Boolean);
+    if (segs.length === 0) return null;
+    const last = segs[segs.length - 1];
+    const m = last.match(/^(.*?)(\.(png|jpg|jpeg|webp|gif))?$/i);
+    const ext = m[2] || '.png';
+    const id = m[1];
+    const base = u.origin + '/' + segs.slice(0, -1).join('/');
+    return { base, id, ext, full: url };
+  } catch (e) { return { base: '', id: url, ext: '', full: url }; }
+}
+function urlFromId(o) {
+  if (!o) return null;
+  if (!o.id) return o.full || null;
+  if (!o.base) return o.id;
+  return o.base + '/' + o.id + (o.ext || '');
+}
+
+// ============ STORAGE ============
+function estimateSize(obj) { try { return new Blob([JSON.stringify(obj)]).size; } catch (e) { return 999999; } }
+
+function loadFromStorage() {
+  try { state.apiKeys = JSON.parse(localStorage.getItem(STORAGE_KEYS.keys) || '[]'); } catch (e) { state.apiKeys = []; }
+  try { state.sessions = JSON.parse(localStorage.getItem(STORAGE_KEYS.sessions) || '[]'); } catch (e) { state.sessions = []; }
+  try {
+    const cid = localStorage.getItem(STORAGE_KEYS.current);
+    state.currentSession = state.sessions.find(s => s.id === cid) || null;
+  } catch (e) { state.currentSession = null; }
+  try {
+    const rs = localStorage.getItem(STORAGE_KEYS.refSupport);
+    if (rs === 'yes' || rs === 'no') state.refSupport = rs;
+  } catch (e) {}
+}
+
+function saveSessions() {
+  let sessions = state.sessions;
+  let size = estimateSize(sessions);
+  let dropped = 0;
+  while (size > QUOTA_LIMIT && sessions.length > 1) {
+    sessions = sessions.slice(1);
+    size = estimateSize(sessions);
+    dropped++;
+  }
+  if (dropped > 0) {
+    debug('Quota : ' + dropped + ' ancienne(s) session(s) supprimée(s)', 'warn');
+    human('⚠️ ' + dropped + ' session(s) ancienne(s) supprimée(s)');
+  }
+  state.sessions = sessions;
+  try { localStorage.setItem(STORAGE_KEYS.sessions, JSON.stringify(sessions)); updateStorageHint(); return true; }
+  catch (e) {
+    try { const reduced = sessions.slice(-2); localStorage.setItem(STORAGE_KEYS.sessions, JSON.stringify(reduced)); state.sessions = reduced; return true; }
+    catch (e2) { return false; }
+  }
+}
+
+function saveKeys() { try { localStorage.setItem(STORAGE_KEYS.keys, JSON.stringify(state.apiKeys)); } catch (e) {} }
+function saveCurrentId() { try { if (state.currentSession) localStorage.setItem(STORAGE_KEYS.current, state.currentSession.id); else localStorage.removeItem(STORAGE_KEYS.current); } catch (e) {} }
+function saveRefSupport() { try { localStorage.setItem(STORAGE_KEYS.refSupport, state.refSupport); } catch (e) {} }
+
+function updateStorageHint() {
+  const used = estimateSize(state.sessions);
+  const pct = Math.round(used / 5_000_000 * 100);
+  $('storageHint').textContent = 'Stockage : ' + Math.round(used / 1024) + ' Ko (' + pct + '%) · ' + state.sessions.length + ' session(s) · mode ' + (state.refSupport === 'yes' ? 'image+strength ✓' : state.refSupport === 'no' ? 'texte seul' : 'à détecter');
+  $('sessionsBadge').textContent = state.sessions.length + ' session' + (state.sessions.length > 1 ? 's' : '');
+}
+
+// ============ API : VALIDATION ============
+function isValidKeyFormat(k) { return typeof k === 'string' && k.startsWith('sk-') && k.length >= 15 && k.length <= 200; }
+
+async function quickPing(key) {
+  try {
+    const controller = new AbortController();
+    const tid = setTimeout(() => controller.abort(), 4000);
+    const res = await fetch(API_BASE + '/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: MODEL_TEXT, messages: [{ role: 'user', content: 'ok' }], max_tokens: 1 }),
+      signal: controller.signal
+    });
+    clearTimeout(tid);
+    return res.status !== 401 && res.status !== 403;
+  } catch (e) { return null; }
+}
+
+async function validateAndSaveKeys() {
+  const raw = $('keysInput').value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  if (raw.length === 0) { toast('Aucune clé à valider', 'error'); return; }
+  $('validateBtn').disabled = true;
+  $('validateBtn').textContent = '⏳ Validation…';
+  human('🔐 Validation de ' + raw.length + ' clé(s)…');
+  const valid = [];
+  for (let i = 0; i < raw.length; i++) {
+    const k = raw[i];
+    if (!isValidKeyFormat(k)) { debug('Clé ' + (i + 1) + ' : format invalide', 'err'); continue; }
+    const ping = await quickPing(k);
+    if (ping === false) { debug('Clé ' + (i + 1) + ' : refusée', 'err'); continue; }
+    valid.push(k);
+    debug('Clé ' + (i + 1) + ' : OK', 'ok');
+  }
+  state.apiKeys = valid;
+  saveKeys();
+  const st = $('keyStatus');
+  if (valid.length > 0) { st.className = 'status-line ok'; $('keyStatusText').textContent = valid.length + ' clé(s) enregistrée(s) · rotation auto'; }
+  else { st.className = 'status-line err'; $('keyStatusText').textContent = 'Aucune clé valide'; }
+  $('validateBtn').disabled = false;
+  $('validateBtn').textContent = '🔐 Valider et enregistrer';
+  updateKeyBadge();
+  toast(valid.length + ' clé(s) enregistrée(s)', valid.length > 0 ? 'success' : 'error', 3000);
+}
+
+function updateKeyBadge() { $('keyBadge').textContent = state.apiKeys.length + ' validée' + (state.apiKeys.length > 1 ? 's' : ''); updateGenBtn(); }
+function updateRefBadge() { $('refBadge').textContent = state.referenceImages.length + ' photo' + (state.referenceImages.length > 1 ? 's' : ''); updateGenBtn(); }
+function updateGenBtn() {
+  const btn = $('genBtn');
+  const ok = state.apiKeys.length > 0 && state.referenceImages.length > 0 && !state.isRunning;
+  btn.disabled = !ok;
+  if (state.isRunning) btn.textContent = 'Génération en cours…';
+  else if (state.apiKeys.length === 0) btn.textContent = 'Validez vos clés API';
+  else if (state.referenceImages.length === 0) btn.textContent = 'Ajoutez votre photo';
+  else btn.textContent = 'Lancer · ' + (state.referenceImages.length * 120) + ' photos';
+}
+
+// ============ API : ANALYSE VISAGE ============
+async function apiAnalyzeFace(dataUrl) {
+  const key = getKey(); if (!key) return null;
+  try {
+    const res = await fetch(API_BASE + '/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: MODEL_TEXT,
+        messages: [
+          { role: 'system', content: 'You are a forensic facial analyst. Return ONLY valid JSON on single lines, no markdown.' },
+          { role: 'user', content: [
+            { type: 'text', text: 'Analyze this photo. Focus especially on the FACE — describe it precisely enough that an AI image model can recreate the SAME face in many different contexts.\n\nReturn JSON:\n{\n "face_description": {\n   "gender_presentation": "...",\n   "ethnicity": "...",\n   "age_range": "...",\n   "skin_tone": "precise",\n   "eye_shape": "precise",\n   "eye_color": "precise",\n   "eyebrows": "precise",\n   "nose": "precise",\n   "mouth": "precise",\n   "jawline": "precise",\n   "cheekbones": "precise",\n   "hair_color": "precise",\n   "hair_texture": "precise",\n   "distinctive_features": "moles, freckles, dimples, scars",\n   "body_type": "slim, athletic, average",\n   "overall_impression": "one phrase"\n },\n "full_face_sentence": "A single dense 55-70 word sentence that describes the face in full for inclusion in every image prompt — ethnicity, age, skin tone, eye shape + color, eyebrows, nose, mouth, jawline, cheekbones, hair, distinctive features."\n}' },
+            { type: 'image_url', image_url: { url: dataUrl } }
+          ] }
+        ],
+        temperature: 0.2, max_tokens: 1200, response_format: { type: 'json_object' }
+      })
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const c = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    try { const parsed = JSON.parse(c); return parsed.full_face_sentence ? parsed : null; } catch (e) { return null; }
+  } catch (e) { return null; }
+}
+
+// ============ API : GÉNÉRATION AGENTS A (fashion + artists + festive + luxury + posters + flyers + music + sports) ============
+async function apiGenerateAgentsA(faceSentence) {
+  const key = getKey(); if (!key) return null;
+  const prompt = [
+    'You are the creative director of a haute-couture pressbook studio.',
+    'Design ALL the photo transformation agents for a top model pressbook.',
+    '',
+    'SUBJECT FACE (must remain the SAME person in every photo): ' + faceSentence,
+    '',
+    'CRITICAL RULE — FRAMING / PLAN VARIATION:',
+    'Each agent MUST specify a DIFFERENT shot type ("plan"). Do NOT repeat the reference photo framing. Use a rich variety: plan américain (American shot, knees up), plan taille (waist up), plan poitrine (chest up), gros plan (close-up), très gros plan (extreme close-up), plan large (wide shot), plan moyen (medium shot), plan italien (Italian shot, full body), contre-plongée (low angle), plongée (high angle), profil (profile), de dos (from behind), de trois-quarts (three-quarter), travelling latéral, plan séquence. The subject\'s FACE must always remain visible and recognizable.',
+    '',
+    'Generate these agents:',
+    '',
+    'A) FASHION PHOTOGRAPHERS (15) — inspired by the greatest fashion photographers: Richard Avedon, Helmut Newton, Annie Leibovitz, Peter Lindbergh, Mario Testino, Steven Meisel, Tim Walker, Paolo Roversi, Juergen Teller, Ellen von Unwerth, Herb Ritts, Irving Penn, Guy Bourdin, Nick Knight, Sølve Sundsbø. Each: { "name": "...", "era": "...", "signature": "style descriptor (max 14 words)", "plan": "signature shot type in French+English (e.g. plan américain, medium-knee shot)", "prompt": "style directive (max 18 words)" }',
+    '',
+    'B) ART PHOTOGRAPHERS (15) — masters of photographic art across all eras: Henri Cartier-Bresson, Man Ray, Diane Arbus, Ansel Adams, Cindy Sherman, Robert Mapplethorpe, Nan Goldin, Sebastião Salgado, Steve McCurry, Vivian Maier, Brassaï, André Kertész, Berenice Abbott, Robert Frank, Hiroshi Sugimoto. Each: { "name": "...", "era": "...", "signature": "...", "plan": "...", "prompt": "..." }',
+    '',
+    'C) FESTIVE / FUN CONCEPTS (10) — playful elegant festive scenes (New Year\'s Eve confetti, birthday with champagne, Venetian carnival, art-deco gala, golden hour picnic, rooftop summer party, cherry blossom festival, masquerade ball, retro diner celebration, sunset beach party). Each: { "name": "...", "prompt": "scene (max 20 words)", "plan": "shot type" }',
+    '',
+    'D) LUXURY CONCEPTS (10) — ultra-luxury scenes (private jet, Monaco yacht, Parisian penthouse, Dubai infinity pool, vintage Rolls-Royce, five-star suite, Santorini cliff, Monaco casino, Tuscany vineyard, private island). Each: { "name": "...", "prompt": "scene (max 20 words)", "plan": "shot type" }',
+    '',
+    'E) MOVIE POSTERS (8) — for each, invent a plausible FICTIONAL FILM TITLE, a genre, a tagline, and a poster visual concept where the subject is the star. Genres to cover: action blockbuster, romantic drama, sci-fi epic, film noir, fantasy adventure, horror thriller, historical epic, spy thriller. The title text will be included in the poster image. Each: { "title": "invented film title (English)", "genre": "...", "tagline": "short punchline", "prompt": "visual scene (max 22 words)", "plan": "poster composition (portrait, 3/4, close-up dramatic)" }',
+    '',
+    'F) CONCERT FLYERS (7) — for each, invent a FICTIONAL BAND/ARTIST NAME, a venue, a date, and a flyer visual concept. Music genres: rock, jazz, electro, indie, rap, classical, world. The band name + venue text will be included on the flyer. Each: { "band": "invented band name", "genre": "...", "venue": "Paris, Berlin, Tokyo, etc.", "date": "month + day", "prompt": "flyer visual (max 20 words)", "plan": "flyer composition" }',
+    '',
+    'G) MUSIC INSTRUMENTS (8) — the subject playing a musical instrument in a beautiful setting. Instruments: grand piano, acoustic guitar, violin, cello, saxophone, trumpet, drums, harp. Each: { "instrument": "...", "setting": "scene (max 15 words)", "plan": "shot type showing both face and instrument" }',
+    '',
+    'H) SPORTS & MARTIAL ARTS (7) — the subject practicing a sport or martial art elegantly. Disciplines: kung fu, boxing, tennis, contemporary dance, yoga, fencing, archery. Each: { "discipline": "...", "setting": "scene (max 15 words)", "plan": "dynamic shot type showing the face" }',
+    '',
+    'Return ONLY valid JSON:',
+    '{ "fashion_photographers": [...15...], "artist_photographers": [...15...], "festive_concepts": [...10...], "luxury_concepts": [...10...], "movie_posters": [...8...], "concert_flyers": [...7...], "music_instruments": [...8...], "sports_disciplines": [...7...] }',
+    '',
+    'All strings single-line. No markdown. No trailing commas.'
+  ].join('\n');
+
+  const res = await fetch(API_BASE + '/chat/completions', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: MODEL_TEXT,
+      messages: [
+        { role: 'system', content: 'You are a creative director. You ALWAYS return valid JSON exactly matching the requested schema. No markdown.' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.9, max_tokens: 8000, response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) { debug('Agents A HTTP ' + res.status, 'err'); return null; }
+  const data = await res.json();
+  const c = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+  try { return JSON.parse(c); } catch (e) { debug('Parse agents A : ' + e.message, 'err'); return null; }
+}
+
+// ============ API : GÉNÉRATION AGENTS B (40 peintres + 40 époques) ============
+async function apiGenerateAgentsB() {
+  const key = getKey(); if (!key) return null;
+  const prompt = [
+    'You are the curator of the world\'s greatest portrait painters across all eras.',
+    'Design 40 painting agents for a digital pressbook. Each agent must be a DIFFERENT painter AND show a DIFFERENT era of art history.',
+    '',
+    'Cover ALL eras: Pre-Renaissance, Renaissance, Mannerism, Baroque, Rococo, Neoclassicism, Romanticism, Realism, Impressionism, Post-Impressionism, Symbolism, Art Nouveau, Fauvism, Expressionism, Cubism, Surrealism, Pop Art, Contemporary.',
+    '',
+    'Suggested painters (use these + add if needed): Botticelli, Leonardo da Vinci, Raphael, Titian, El Greco, Caravaggio, Velázquez, Rembrandt, Vermeer, Rubens, Goya, Ingres, Delacroix, David, Manet, Monet, Renoir, Degas, Cézanne, Toulouse-Lautrec, Seurat, Van Gogh, Gauguin, Klimt, Mucha, Munch, Kandinsky, Matisse, Modigliani, Chagall, Schiele, Magritte, Dalí, Picasso, Braque, Bacon, Freud, Hockney, Warhol, Lichtenstein, Basquiat, Kahlo, Sargent, Whistler.',
+    '',
+    'Each item: { "name": "painter name", "era": "art period", "style": "signature style (max 12 words)", "plan": "typical portrait framing of this painter (e.g. bust portrait, full length, intimate close-up, mythological scene)", "prompt": "painting technique directive for the image model (max 20 words)" }',
+    '',
+    'Return ONLY valid JSON:',
+    '{ "painters": [ ...40 items... ] }',
+    '',
+    'All strings single-line. No markdown.'
+  ].join('\n');
+
+  const res = await fetch(API_BASE + '/chat/completions', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: MODEL_TEXT,
+      messages: [
+        { role: 'system', content: 'You are a curator. You ALWAYS return valid JSON exactly matching the requested schema. No markdown.' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.85, max_tokens: 6000, response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) { debug('Agents B HTTP ' + res.status, 'err'); return null; }
+  const data = await res.json();
+  const c = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+  try { return JSON.parse(c); } catch (e) { debug('Parse agents B : ' + e.message, 'err'); return null; }
+}
+
+// ============ API : GÉNÉRATION IMAGE (avec fallback automatique) ============
+async function apiImage(prompt, refDataUrl) {
+  const key = getKey(); if (!key) throw new Error('Aucune clé API');
+  for (let attempt = 0; attempt < 5; attempt++) {
+    if (state.stopRequested) throw new Error('Arrêt');
+    try {
+      // Décider du mode selon l'état détecté
+      const useRef = refDataUrl && state.refSupport !== 'no';
+      const body = { model: MODEL_IMAGE, prompt, n: 1, size: IMAGE_SIZE, response_format: 'url' };
+      if (useRef) {
+        body.image = refDataUrl;
+        body.strength = 0.42;   // compromis : garde la structure + permet les changements
+      }
+
+      const res = await fetch(API_BASE + '/images/generations', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (res.status === 429) { await sleep([10, 20, 35, 50, 75][attempt] * 1000); continue; }
+
+      // Détection : si 400/422 avec ref active → Agnès refuse image+strength
+      if ((res.status === 400 || res.status === 422) && useRef) {
+        const errTxt = await res.text();
+        if (state.refSupport !== 'no') {
+          state.refSupport = 'no';
+          saveRefSupport();
+          debug('❌ Image+strength rejeté (' + res.status + ') — bascule en texte seul pour toute la session', 'warn');
+          debug('Raison : ' + errTxt.slice(0, 160), 'warn');
+          human('⚠️ Agnès ne supporte pas image+strength — bascule en texte seul');
+          updateStorageHint();
+        }
+        continue; // retry immédiat sans image
+      }
+
+      if (!res.ok) { const err = await res.text(); debug('HTTP ' + res.status + ' · ' + err.slice(0, 150), 'err'); throw new Error('HTTP ' + res.status); }
+
+      // Succès : confirmer le mode si c'était la première fois
+      if (useRef && state.refSupport === 'unknown') {
+        state.refSupport = 'yes';
+        saveRefSupport();
+        debug('✅ Image+strength CONFIRMÉ supporté par Agnès — cohérence faciale maximale', 'ok');
+        human('✅ Cohérence faciale maximale activée (image+strength)');
+        updateStorageHint();
+      }
+
+      const data = await res.json();
+      const item = data.data && data.data[0];
+      if (item && item.url) return item.url;
+      if (item && item.b64_json) return 'data:image/png;base64,' + item.b64_json;
+      throw new Error('Réponse invalide');
+    } catch (e) {
+      if (e.message === 'Arrêt') throw e;
+      if (attempt === 4) throw e;
+      await sleep([5, 10, 20, 35][attempt] * 1000);
+    }
+  }
+  throw new Error('Échec après tentatives');
+}
+
+// ============ CONSTRUCTION PROMPTS ============
+function faceLockBlock(faceSentence) {
+  return 'CRITICAL — FACE PRESERVATION: The subject\'s face MUST be IDENTICAL to the reference photo: "' + faceSentence + '". ' +
+    'ABSOLUTELY preserve: ethnicity, age, skin tone, eye shape, eye color, eyebrows, nose, mouth, jawline, cheekbones, hair color, distinctive features. ' +
+    'The face is the ANCHOR — the SAME person in every photo. ' +
+    'You MAY change: hairstyle (updos, waves, bobs), hats (berets, fedoras, headscarves, crowns), clothing (haute couture, period costume, avant-garde), accessories, subtle makeup, expression, pose, lighting, background, era, art style. ';
+}
+function planBlock(plan) {
+  if (!plan) return '';
+  return 'SHOT TYPE / PLAN: ' + plan + '. Do NOT use the reference photo\'s framing. The face must remain clearly visible and recognizable. ';
+}
+
+function buildFashionPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: hyperrealistic fashion photograph in the style of ' + agent.name + ' (' + agent.era + '). ' + agent.signature + '. ' +
+    'Technique: ' + agent.prompt + '. ' +
+    'Setting: clean minimalist studio OR elegant urban location OR cute Japanese boutique exterior — refined, editorial, high-fashion. ' +
+    'Magazine-quality, ultra-detailed texture, film grain, natural skin with visible pores. Portrait 9:16. No text, no watermark, no logo.';
+}
+function buildArtistPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: art photograph in the style of ' + agent.name + ' (' + agent.era + '). ' + agent.signature + '. ' +
+    'Technique: ' + agent.prompt + '. Setting: artistic, poetic, contemplative. B&W or color depending on the master. ' +
+    'Gallery-quality print, film grain, timeless. Portrait 9:16. No text, no watermark.';
+}
+function buildFestivePrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: festive, joyful, elegant editorial photograph. Scene: ' + agent.prompt + '. ' +
+    'Playful, elegant, chic. Natural light, warm atmosphere, confetti/sparkles/bubbles if relevant. ' +
+    'Hyperrealistic, magazine-quality, film grain. Portrait 9:16. No text, no watermark.';
+}
+function buildLuxuryPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: ultra-luxury editorial photograph. Scene: ' + agent.prompt + '. ' +
+    'Elegant, serene, haute couture. Golden hour or soft cinematic light, opulent atmosphere. ' +
+    'Hyperrealistic, magazine-quality, film grain. Portrait 9:16. No text, no watermark.';
+}
+function buildPosterPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: dramatic movie poster. Title: "' + (agent.title || 'Untitled') + '". Genre: ' + (agent.genre || '') + '. Tagline: "' + (agent.tagline || '') + '". ' +
+    'Visual: ' + agent.prompt + '. ' +
+    'The subject is the star — heroic or intense pose. Cinematic lighting, dramatic atmosphere. ' +
+    'INCLUDE the film title "' + (agent.title || '') + '" prominently on the poster in elegant cinematic typography, and the tagline in smaller text. ' +
+    'Hyperrealistic, film grain. Portrait 9:16. No watermark.';
+}
+function buildFlyerPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: concert / event flyer with the subject as the star artist. ' +
+    'Band / artist name: "' + (agent.band || '') + '". Genre: ' + (agent.genre || '') + '. Venue: ' + (agent.venue || '') + '. Date: ' + (agent.date || '') + '. ' +
+    'Visual: ' + agent.prompt + '. Bold, graphic, retro or modern poster design. ' +
+    'INCLUDE the band name "' + (agent.band || '') + '" as the headline, plus the venue "' + (agent.venue || '') + '" and date "' + (agent.date || '') + '" in supporting typography. ' +
+    'Photographic subject, film grain. Portrait 9:16. No watermark.';
+}
+function buildMusicPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: elegant music photograph. The subject plays the ' + agent.instrument + '. ' +
+    'Setting: ' + agent.setting + '. ' +
+    'The instrument and the subject\'s hands must be clearly visible along with the face. ' +
+    'Hyperrealistic, cinematic light, film grain. Portrait 9:16. No text, no watermark.';
+}
+function buildSportsPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Style: elegant sports / martial arts photograph. Discipline: ' + agent.discipline + '. ' +
+    'Setting: ' + agent.setting + '. ' +
+    'Dynamic pose, sweat, intensity, elegance. The face must remain visible and recognizable. ' +
+    'Hyperrealistic, cinematic light, film grain. Portrait 9:16. No text, no watermark.';
+}
+function buildPaintingPrompt(faceSentence, agent) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Medium: painting in the style of ' + agent.name + ' (' + agent.era + '). ' + agent.style + '. ' +
+    'Technique: ' + agent.prompt + '. ' +
+    'The face MUST still be recognizable as the SAME person, painted in the master\'s technique. ' +
+    'Traditional painting media appropriate to the era (oil, tempera, watercolor, acrylic). ' +
+    'Setting: appropriate to the painter\'s era. Museum-quality masterpiece. Portrait 9:16. No signature, no text.';
+}
+
+function buildVideoSuggestion(photo, session) {
+  return 'Subject: ' + (photo.title || 'portrait') + '. ' +
+    'Action: subtle movement — gentle breathing, slow blink, slight head turn, hair moving, subtle motion of instrument/props. ' +
+    'Camera: ' + (photo.kind === 'counterfield' ? 'slow tracking shot' : 'slow push-in OR static tripod with micro handheld drift') + '. ' +
+    'Style: ' + (photo.agentName || '') + ' · ' + (photo.category || '') + '. ' +
+    'Preserve the still image\'s face, lighting, colors, and atmosphere. ' +
+    'Quality: film grain, photorealistic, real texture, 35mm. ' +
+    'Duration: 5 seconds. Aspect ratio: 9:16. No music, no text, no watermark.';
+}
+
+// ============ CONSTRUCTION TÂCHES ============
+function buildAllTasks(agents, faceSentence, session) {
+  const tasks = [];
+  const refs = session.references;
+  const pushAll = (category, list, promptBuilder) => {
+    for (let r = 0; r < refs.length; r++) {
+      list.forEach((agent, ai) => {
+        tasks.push({
+          category, refIdx: r, agentIdx: ai,
+          agentName: agent.name || agent.title || agent.band || agent.instrument || agent.discipline || '',
+          title: (agent.name || agent.title || agent.band || agent.instrument || agent.discipline || 'Sans titre') + ' · Réf ' + (r + 1),
+          sub: (agent.era || agent.genre || '') + (agent.style ? ' · ' + agent.style : ''),
+          plan: agent.plan || '',
+          prompt: promptBuilder(faceSentence, agent)
+        });
+      });
+    }
+  };
+  pushAll('fashion', agents.fashion_photographers || [], buildFashionPrompt);
+  pushAll('artists', agents.artist_photographers || [], buildArtistPrompt);
+  pushAll('festive', agents.festive_concepts || [], buildFestivePrompt);
+  pushAll('luxury', agents.luxury_concepts || [], buildLuxuryPrompt);
+  pushAll('posters', agents.movie_posters || [], buildPosterPrompt);
+  pushAll('flyers', agents.concert_flyers || [], buildFlyerPrompt);
+  pushAll('music', agents.music_instruments || [], buildMusicPrompt);
+  pushAll('sports', agents.sports_disciplines || [], buildSportsPrompt);
+  pushAll('paintings', agents.painters || [], buildPaintingPrompt);
+  return tasks;
+}
+
+// ============ SESSIONS ============
+function createSession(references, faceAnalyses, agents, faceSentence) {
+  const s = {
+    id: uid(), date: Date.now(),
+    references: references.map((r, i) => ({ thumb: r.thumb, analysis: faceAnalyses[i] || null })),
+    faceSentence, agents, photos: []
+  };
+  state.sessions.push(s);
+  state.currentSession = s;
+  saveSessions(); saveCurrentId();
+  return s;
+}
+
+// ============ RENDER ============
+function renderSession(session) {
+  if (!session) { $('sessionView').classList.remove('visible'); return; }
+  $('sessionView').classList.add('visible');
+  const firstRef = session.references[0];
+  $('sessionRefThumb').innerHTML = firstRef ? '<img src="' + firstRef.thumb + '" alt="">' : '';
+  $('sessionTitle').textContent = 'Pressbook · ' + new Date(session.date).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+  $('sessionSub').textContent = session.references.length + ' réf. · ' + session.photos.length + ' photos · ' + (session.agents ? 'agents IA' : '');
+  $('sessionProgress').textContent = state.completed + ' / ' + state.total;
+  renderTabs(session); renderPhotoGrid(session);
+}
+
+function renderTabs(session) {
+  const el = $('tabs');
+  el.innerHTML = CATEGORIES.map(cat => {
+    const total = session.photos.filter(p => p.category === cat.id).length;
+    const expected = cat.count * session.references.length;
+    const active = state.activeTab === cat.id ? ' active' : '';
+    return '<button class="tab' + active + '" data-tab="' + cat.id + '">' + cat.icon + ' ' + cat.label + ' <span class="tab-count">' + total + '/' + expected + '</span></button>';
+  }).join('');
+  el.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => {
+    state.activeTab = b.dataset.tab;
+    renderTabs(session); renderPhotoGrid(session);
+  });
+}
+
+function renderPhotoGrid(session) {
+  const grid = $('photoGrid');
+  grid.innerHTML = '';
+  const photos = session.photos.filter(p => p.category === state.activeTab);
+  if (photos.length === 0) {
+    grid.innerHTML = '<div class="empty-state">Aucune photo dans cette catégorie pour le moment.</div>';
+    return;
+  }
+  photos.forEach(p => renderPhoto(p, session));
+}
+
+function renderPhoto(p, session) {
+  const grid = $('photoGrid');
+  const card = document.createElement('div');
+  card.className = 'photo';
+  card.dataset.photoId = p.id || (p.category + '-' + p.refIdx + '-' + p.agentIdx);
+
+  const src = p.url || (p.urlRef ? urlFromId(p.urlRef) : null);
+  let imgHtml;
+  if (src && src !== 'error') imgHtml = '<img src="' + esc(src) + '" loading="lazy" alt="">';
+  else if (p.url === 'error') imgHtml = '<div class="err">Échec</div>';
+  else imgHtml = '<div class="load">Génération…</div>';
+
+  const videoPrompt = p.videoPrompt || buildVideoSuggestion(p, session);
+  const fullPrompt = p.prompt || '';
+
+  card.innerHTML =
+    '<div class="photo-img">' + imgHtml +
+    (session && session.references.length > 1 ? '<div class="photo-ref-badge">Réf ' + ((p.refIdx || 0) + 1) + '</div>' : '') +
+    (p.plan ? '<div class="photo-plan-badge">' + esc(p.plan.slice(0, 28)) + '</div>' : '') +
+    '</div>' +
+    '<div class="photo-meta">' +
+    '<span class="pbadge ' + p.category + '">' + (CATEGORIES.find(c => c.id === p.category) || {}).icon + ' ' + (CATEGORIES.find(c => c.id === p.category) || {}).label + '</span>' +
+    '<div class="ptitle">' + esc(p.agentName || '') + '</div>' +
+    (p.sub ? '<div class="psub">' + esc(p.sub) + '</div>' : '') +
+    (fullPrompt ?
+      '<div class="pblock">' +
+      '<div class="plabel">📸 Prompt image</div>' +
+      '<button class="pcopy" data-copy="' + esc(fullPrompt) + '">Copier</button>' +
+      '<div class="ptext">' + esc(fullPrompt) + '</div>' +
+      '</div>' : '') +
+    '<div class="pblock video">' +
+    '<div class="plabel">🎬 Suggestion vidéo</div>' +
+    '<button class="pcopy" data-copy="' + esc(videoPrompt) + '">Copier</button>' +
+    '<div class="ptext">' + esc(videoPrompt) + '</div>' +
+    '</div>' +
+    (src && src !== 'error' ? '<a class="popen" href="' + esc(src) + '" target="_blank" rel="noopener">Ouvrir en grand</a>' : '') +
+    '</div>';
+
+  grid.appendChild(card);
+  card.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => {
+    const ta = document.createElement('textarea');
+    ta.value = b.dataset.copy;
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast('Copié', 'success', 1500); } catch (e) { toast('Copie impossible', 'error'); }
+    document.body.removeChild(ta);
+  });
+}
+
+function updateQueue() {
+  const q = $('queue');
+  q.classList.add('visible');
+  q.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.4rem;">' +
+    '<span style="color:#f4d47a;font-weight:700;">PHOTOS : ' + state.completed + ' / ' + state.total + '</span>' +
+    '<span style="color:#64748b;">' + (state.completed < state.total ? '~' + fmtEta((state.total - state.completed) * 3.5 / Math.max(1, state.apiKeys.length)) : 'Terminé') + '</span>' +
+    '</div>';
+}
+
+function renderSessionsList() {
+  const el = $('sessionsList');
+  if (state.sessions.length === 0) { el.innerHTML = '<div class="empty-state" style="padding:0.8rem;font-size:0.72rem;">Aucune session enregistrée.</div>'; return; }
+  el.innerHTML = state.sessions.slice().reverse().map(s => {
+    const isCur = state.currentSession && state.currentSession.id === s.id;
+    const d = new Date(s.date).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+    const thumb = (s.references[0] && s.references[0].thumb) || '';
+    return '<div class="session-row' + (isCur ? ' current' : '') + '" data-load="' + s.id + '">' +
+      (thumb ? '<div class="sr-thumb"><img src="' + thumb + '" alt=""></div>' : '') +
+      '<div class="sr-meta">' +
+      '<div class="sr-title">' + s.photos.length + ' photos · ' + s.references.length + ' réf.</div>' +
+      '<div class="sr-sub">' + d + (isCur ? ' · ACTUELLE' : '') + '</div>' +
+      '</div>' +
+      '<div class="sr-actions">' +
+      '<button class="btn btn-slate btn-xs" data-del="' + s.id + '" style="color:#f87171;">✕</button>' +
+      '</div>' +
+      '</div>';
+  }).join('');
+  el.querySelectorAll('[data-load]').forEach(b => b.onclick = (e) => {
+    if (e.target.tagName === 'BUTTON') return;
+    const s = state.sessions.find(x => x.id === b.dataset.load);
+    if (!s) return;
+    state.currentSession = s;
+    saveCurrentId();
+    state.activeTab = 'fashion';
+    renderSession(s); renderSessionsList();
+    human('📚 Session chargée · ' + s.photos.length + ' photos');
+    toast('Session chargée', 'success');
+  });
+  el.querySelectorAll('[data-del]').forEach(b => b.onclick = (e) => {
+    e.stopPropagation();
+    if (!confirm('Supprimer cette session ?')) return;
+    state.sessions = state.sessions.filter(x => x.id !== b.dataset.del);
+    if (state.currentSession && state.currentSession.id === b.dataset.del) state.currentSession = null;
+    saveSessions(); saveCurrentId();
+    renderSessionsList(); renderSession(state.currentSession); updateStorageHint();
+    toast('Session supprimée', 'warn');
+  });
+}
+
+// ============ RÉFÉRENCES ============
+function compressImg(dataUrl, maxSide, quality) {
+  return new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      let { width: w, height: h } = img;
+      const s = Math.min(1, maxSide / Math.max(w, h));
+      w = Math.round(w * s); h = Math.round(h * s);
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      c.getContext('2d').drawImage(img, 0, 0, w, h);
+      res(c.toDataURL('image/jpeg', quality || 0.75));
+    };
+    img.onerror = () => res(dataUrl);
+    img.src = dataUrl;
+  });
+}
+
+async function handleRefFiles(files) {
+  for (const f of files) {
+    if (!f.type.startsWith('image/')) continue;
+    const dataUrl = await new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = e => res(e.target.result);
+      r.onerror = rej;
+      r.readAsDataURL(f);
+    });
+    const api = await compressImg(dataUrl, REF_API_MAX_SIDE, 0.7);
+    const display = await compressImg(dataUrl, REF_DISPLAY_MAX, 0.8);
+    const tiny = await compressImg(dataUrl, THUMB_MAX_SIDE, 0.7);
+    state.referenceImages.push(api);
+    state.referenceDisplay.push(display);
+    state.referenceThumbs.push(tiny);
+  }
+  renderThumbs(); updateRefBadge();
+  human('📸 ' + state.referenceImages.length + ' photo(s) prête(s)');
+}
+
+function renderThumbs() {
+  const el = $('thumbs');
+  el.innerHTML = state.referenceDisplay.map((img, i) =>
+    '<div class="thumb"><img src="' + img + '" alt="">' +
+    '<button class="rm" data-rm="' + i + '">✕</button>' +
+    '<div class="lbl">PHOTO ' + (i + 1) + '</div></div>'
+  ).join('');
+  el.querySelectorAll('[data-rm]').forEach(b => b.onclick = (e) => {
+    e.stopPropagation();
+    const i = parseInt(b.dataset.rm, 10);
+    state.referenceImages.splice(i, 1);
+    state.referenceDisplay.splice(i, 1);
+    state.referenceThumbs.splice(i, 1);
+    renderThumbs(); updateRefBadge();
+  });
+}
+
+// ============ PIPELINE ============
+async function runGeneration() {
+  if (state.isRunning) return;
+  if (state.apiKeys.length === 0) { toast('Validez vos clés API', 'error'); return; }
+  if (state.referenceImages.length === 0) { toast('Ajoutez votre photo', 'error'); return; }
+
+  state.isRunning = true;
+  state.stopRequested = false;
+  state.completed = 0; state.total = 0;
+  state.startTime = Date.now();
+  state.keyIndex = 0;
+
+  $('stopBtn').classList.remove('hidden');
+  $('phaseBar').classList.add('visible');
+  $('genBtn').disabled = true;
+  $('sessionView').classList.remove('visible');
+
+  human('🚀 Nouveau pressbook · ' + state.referenceImages.length + ' réf. · mode ' + (state.refSupport === 'yes' ? 'image+strength' : state.refSupport === 'no' ? 'texte seul' : 'détection auto'));
+  debug('Démarrage avec ' + state.apiKeys.length + ' clé(s) · refSupport=' + state.refSupport, 'ok');
+
+  try {
+    // === PHASE 1 : ANALYSE VISAGE ===
+    setPhase('analyze', '🔍 Analyse approfondie du visage…', '');
+    setStatus('Analyse du visage…');
+    human('🔍 Analyse forensique de votre visage…');
+    const faceAnalyses = [];
+    for (let i = 0; i < state.referenceImages.length; i++) {
+      if (state.stopRequested) throw new Error('Arrêt');
+      human('🔍 Visage ' + (i + 1) + '/' + state.referenceImages.length + '…');
+      const a = await apiAnalyzeFace(state.referenceDisplay[i]);
+      faceAnalyses.push(a);
+      if (a) debug('Visage ' + (i + 1) + ' analysé', 'ok');
+    }
+    const validAnalysis = faceAnalyses.find(a => a && a.full_face_sentence);
+    const faceSentence = validAnalysis ? validAnalysis.full_face_sentence : 'the same person as the reference photo, preserving every facial feature';
+    human('✅ Visage verrouillé');
+
+    // === PHASE 2 : AGENTS ===
+    setPhase('agents', '🧠 Conception des agents créatifs…', '');
+    setStatus('Génération des agents…');
+    human('🧠 L\'IA conçoit 80 agents créatifs (mode, art, ciné, musique, sports)…');
+    const partA = await apiGenerateAgentsA(faceSentence);
+    human('🎨 L\'IA conçoit 40 peintres et leurs époques…');
+    const partB = await apiGenerateAgentsB();
+
+    const agents = {
+      fashion_photographers: (partA && partA.fashion_photographers) || [],
+      artist_photographers: (partA && partA.artist_photographers) || [],
+      festive_concepts: (partA && partA.festive_concepts) || [],
+      luxury_concepts: (partA && partA.luxury_concepts) || [],
+      movie_posters: (partA && partA.movie_posters) || [],
+      concert_flyers: (partA && partA.concert_flyers) || [],
+      music_instruments: (partA && partA.music_instruments) || [],
+      sports_disciplines: (partA && partA.sports_disciplines) || [],
+      painters: (partB && partB.painters) || []
+    };
+    // Fill / trim
+    const fill = (arr, target, prefix) => { while (arr.length < target) arr.push({ name: prefix + ' ' + (arr.length + 1), era: '—', signature: '', style: '', plan: 'medium shot', prompt: 'classic ' + prefix }); };
+    fill(agents.fashion_photographers, 15, 'Fashion');
+    fill(agents.artist_photographers, 15, 'Artist');
+    fill(agents.festive_concepts, 10, 'Festive');
+    fill(agents.luxury_concepts, 10, 'Luxury');
+    fill(agents.movie_posters, 8, 'Poster');
+    fill(agents.concert_flyers, 7, 'Flyer');
+    fill(agents.music_instruments, 8, 'Instrument');
+    fill(agents.sports_disciplines, 7, 'Sport');
+    fill(agents.painters, 40, 'Painter');
+    agents.fashion_photographers = agents.fashion_photographers.slice(0, 15);
+    agents.artist_photographers = agents.artist_photographers.slice(0, 15);
+    agents.festive_concepts = agents.festive_concepts.slice(0, 10);
+    agents.luxury_concepts = agents.luxury_concepts.slice(0, 10);
+    agents.movie_posters = agents.movie_posters.slice(0, 8);
+    agents.concert_flyers = agents.concert_flyers.slice(0, 7);
+    agents.music_instruments = agents.music_instruments.slice(0, 8);
+    agents.sports_disciplines = agents.sports_disciplines.slice(0, 7);
+    agents.painters = agents.painters.slice(0, 40);
+
+    const totalAgents = 15+15+10+10+8+7+8+7+40;
+    debug('Agents conçus : ' + totalAgents, 'ok');
+    human('✨ ' + totalAgents + ' agents prêts');
+
+    // Création de la session
+    const session = createSession(
+      state.referenceDisplay.map((img, i) => ({ thumb: state.referenceThumbs[i] })),
+      faceAnalyses, agents, faceSentence
+    );
+
+    // Build tasks
+    const tasks = buildAllTasks(agents, faceSentence, session);
+    state.total = tasks.length;
+    updateQueue();
+    human('🎬 ' + state.total + ' photos prévues');
+    debug('Total : ' + state.total, 'ok');
+
+    state.activeTab = 'fashion';
+    renderSession(session); renderSessionsList(); updateStorageHint();
+
+    // Exécution parallèle
+    const globalConcurrency = Math.min(state.apiKeys.length * CONCURRENCY_PER_KEY, tasks.length);
+    const lastStartPerKey = {};
+    let idx = 0;
+
+    async function worker(slot) {
+      while (!state.stopRequested && idx < tasks.length) {
+        const myIdx = idx++;
+        const task = tasks[myIdx];
+        const keySlot = slot % state.apiKeys.length;
+        const now = Date.now();
+        const wait = Math.max(0, (lastStartPerKey[keySlot] || 0) + DELAY_PER_KEY_MS - now);
+        lastStartPerKey[keySlot] = Date.now() + wait;
+        if (wait > 0) await sleep(wait);
+        if (state.stopRequested) return;
+
+        // Référence associée à cette tâche (toujours envoyée)
+        const refDataUrl = state.referenceImages[task.refIdx] || state.referenceImages[0];
+
+        let url = null;
+        try {
+          url = await apiImage(task.prompt, refDataUrl);
+          state.completed++;
+          debug('OK ' + state.completed + '/' + state.total + ' · ' + task.title, 'ok');
+        } catch (e) {
+          if (e.message === 'Arrêt') return;
+          state.completed++;
+          debug('KO · ' + task.title + ' · ' + e.message, 'err');
+          url = 'error';
+        }
+
+        const photo = {
+          category: task.category, refIdx: task.refIdx, agentIdx: task.agentIdx,
+          agentName: task.agentName, title: task.title, sub: task.sub, plan: task.plan,
+          prompt: task.prompt,
+          videoPrompt: buildVideoSuggestion({ title: task.title, agentName: task.agentName, category: task.category, plan: task.plan }, session),
+          urlRef: url && url !== 'error' ? idFromUrl(url) : null,
+          url: url
+        };
+        session.photos.push(photo);
+
+        const phaseMap = { fashion: 'fashion', artists: 'artists', festive: 'festive', luxury: 'luxury', posters: 'posters', flyers: 'flyers', music: 'music', sports: 'sports', paintings: 'paintings' };
+        setPhase(phaseMap[task.category] || 'fashion',
+          '📸 ' + state.completed + ' / ' + state.total + (state.refSupport === 'no' ? ' · texte seul' : ' · image+face'),
+          '~' + fmtEta((state.total - state.completed) * 3.5 / state.apiKeys.length));
+        updateQueue();
+        $('sessionProgress').textContent = state.completed + ' / ' + state.total;
+        human('📸 ' + state.completed + '/' + state.total + ' · ' + task.agentName.slice(0, 30));
+
+        if (state.activeTab === task.category) renderPhoto(photo, session);
+        renderTabs(session);
+
+        if (state.completed % 10 === 0) saveSessions();
+      }
+    }
+
+    await Promise.all(Array.from({ length: globalConcurrency }, (_, i) => worker(i)));
+    if (state.stopRequested) throw new Error('Arrêt');
+
+    setPhase('done', '✦ Pressbook terminé ✦', '');
+    human('✨ Terminé ! ' + state.completed + ' photos en ' + fmtEta((Date.now() - state.startTime) / 1000));
+    debug('FIN · ' + state.completed + ' photos', 'ok');
+
+    saveSessions(); updateStorageHint();
+    renderSession(session); renderSessionsList();
+
+  } catch (e) {
+    if (e.message === 'Arrêt') human('⏹ Arrêté');
+    else { debug('Erreur : ' + e.message, 'err'); human('❌ Erreur : ' + e.message); }
+    saveSessions();
+  } finally {
+    state.isRunning = false;
+    state.stopRequested = false;
+    $('stopBtn').classList.add('hidden');
+    updateGenBtn(); setStatus(null);
+    toast(state.completed + ' photo(s)', state.completed > 0 ? 'success' : 'error', 4000);
+  }
+}
+
+function stopGeneration() { if (!state.isRunning) return; state.stopRequested = true; human('⏹ Arrêt demandé…'); }
+
+// ============ EXPORT / IMPORT ============
+function exportSessions() {
+  const data = { version: 2, app: 'voanh-pb', exported: Date.now(), sessions: state.sessions };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'voanh-pressbook-' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Exporté', 'success');
+}
+function importSessions(file) {
+  const r = new FileReader();
+  r.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const incoming = data.sessions || data;
+      if (!Array.isArray(incoming)) throw new Error('Format invalide');
+      const existing = new Set(state.sessions.map(s => s.id));
+      const added = incoming.filter(s => s.id && !existing.has(s.id));
+      state.sessions = state.sessions.concat(added);
+      saveSessions(); renderSessionsList(); updateStorageHint();
+      toast(added.length + ' session(s) importée(s)', 'success');
+    } catch (err) { toast('Import impossible : ' + err.message, 'error'); }
+  };
+  r.readAsText(file);
+}
+
+// ============ INIT ============
+function bind() {
+  $('validateBtn').addEventListener('click', validateAndSaveKeys);
+  $('clearKeysBtn').addEventListener('click', () => {
+    $('keysInput').value = '';
+    state.apiKeys = []; saveKeys();
+    $('keyStatus').className = 'status-line';
+    $('keyStatusText').textContent = 'Aucune clé enregistrée';
+    updateKeyBadge(); toast('Clés effacées', 'warn');
+  });
+  $('refInput').addEventListener('change', (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length) handleRefFiles(files);
+    e.target.value = '';
+  });
+  $('genBtn').addEventListener('click', runGeneration);
+  $('stopBtn').addEventListener('click', stopGeneration);
+  $('newSessionBtn').addEventListener('click', () => {
+    state.currentSession = null; saveCurrentId();
+    $('sessionView').classList.remove('visible');
+    renderSessionsList();
+    human('🆕 Nouvelle session'); toast('Nouvelle session', 'success');
+  });
+  $('exportBtn').addEventListener('click', exportSessions);
+  $('importInput').addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) importSessions(f);
+    e.target.value = '';
+  });
+
+  // Console
+  const handle = $('panelHandle'), content = $('panelContent'), toggleText = $('panelToggle');
+  let open = false;
+  handle.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') return;
+    open = !open;
+    content.classList.toggle('hidden', !open);
+    toggleText.textContent = (open ? '▲' : '▼') + ' CONSOLE';
+  });
+  $('copyConsoleBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const txt = state.debugLog.map(d => d.t + ' ' + d.m).join('\n');
+    const ta = document.createElement('textarea');
+    ta.value = txt;
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast('Console copiée', 'success', 1500); } catch (err) { toast('Copie impossible', 'error'); }
+    document.body.removeChild(ta);
+  });
+  $('clearConsoleBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    state.debugLog = []; renderDebug();
+    toast('Console effacée', 'warn', 1200);
+  });
+
+  // Restore
+  loadFromStorage();
+  if (state.apiKeys.length > 0) {
+    $('keysInput').value = state.apiKeys.join('\n');
+    $('keyStatus').className = 'status-line ok';
+    $('keyStatusText').textContent = state.apiKeys.length + ' clé(s) restaurée(s)';
+  }
+  updateKeyBadge(); updateRefBadge();
+  renderSessionsList(); updateStorageHint();
+  if (state.currentSession) {
+    state.activeTab = 'fashion';
+    renderSession(state.currentSession);
+    human('📚 Session restaurée · ' + state.currentSession.photos.length + ' photos');
+  }
+  human('👋 Prêt · ajoutez votre photo, validez vos clés, lancez.');
+  debug('Voanh Top Model Pressbook v2 initialisé', 'ok');
+  debug('9 catégories · 120 photos/référence · mode refSupport=' + state.refSupport, 'api');
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind);
+else bind();
+</script>
+</body>
+</html>

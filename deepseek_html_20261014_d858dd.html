@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Voanh Pressbook Créatif Auto-Évolutif</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; background: #050510; color: #f1f5f9; min-height: 100vh; padding: 1rem 1rem 12rem; font-size: 14px; line-height: 1.5; }
+.wrap { max-width: 1200px; margin: 0 auto; }
+header { text-align: center; padding: 1.5rem 0 1rem; border-bottom: 1px solid #1e293b; margin-bottom: 1.5rem; position: relative; }
+header::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 50px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37, transparent); }
+.kata { font-size: 0.68rem; letter-spacing: 0.5em; color: #d4af37; opacity: 0.85; text-transform: uppercase; margin-bottom: 0.6rem; }
+h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 400; margin-bottom: 0.4rem; background: linear-gradient(135deg, #d4af37 0%, #f4d47a 30%, #e8c4b8 60%, #c8a8d8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.05; }
+.sub { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 0.9rem; color: #8a8896; }
+.banner { background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(200,168,216,0.05)); border: 1px solid #1e293b; border-left: 2px solid #d4af37; border-radius: 4px; padding: 1rem 1.15rem; font-size: 0.78rem; color: #94a3b8; margin-bottom: 1.2rem; line-height: 1.65; }
+.banner strong { color: #f1f5f9; font-weight: 600; }
+.hl-gold { color: #f4d47a; } .hl-violet { color: #c8a8d8; } .hl-mint { color: #a8d8c8; } .hl-rose { color: #e8b4b8; }
+.card { background: #0a0a18; border: 1px solid #1e293b; border-radius: 4px; margin-bottom: 1rem; overflow: hidden; }
+.card-head { padding: 0.85rem 1rem; border-bottom: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: #e2e8f0; font-weight: 600; font-family: 'Playfair Display', Georgia, serif; }
+.card-head .badge { font-size: 0.6rem; padding: 0.15rem 0.5rem; border: 1px solid #b8860b; color: #f4d47a; border-radius: 2px; letter-spacing: 0.1em; font-family: -apple-system, sans-serif; }
+.card-body { padding: 1rem; }
+textarea, input[type=text], select { width: 100%; background: #05050e; border: 1px solid #1e293b; border-radius: 4px; padding: 0.7rem 0.85rem; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.78rem; color: #f1f5f9; outline: none; }
+textarea:focus, input:focus, select:focus { border-color: #b8860b; box-shadow: 0 0 0 3px rgba(212,175,55,0.12); }
+textarea { min-height: 80px; resize: vertical; line-height: 1.55; }
+select { cursor: pointer; }
+.btn { width: 100%; padding: 0.85rem; border-radius: 4px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; border: 1px solid; transition: all 0.15s; font-family: 'Playfair Display', Georgia, serif; }
+.btn-gold { background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(232,196,184,0.1)); border-color: #b8860b; color: #f4d47a; }
+.btn-gold:hover:not(:disabled) { background: rgba(212,175,55,0.22); }
+.btn-gold:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-red { background: transparent; border-color: #b91c1c; color: #f87171; }
+.btn-slate { background: transparent; border-color: #334155; color: #94a3b8; font-size: 0.68rem; padding: 0.55rem 0.7rem; letter-spacing: 0.1em; }
+.btn-slate:hover { color: #f4d47a; border-color: #b8860b; }
+.btn-xs { font-size: 0.58rem; padding: 0.3rem 0.55rem; width: auto; letter-spacing: 0.08em; }
+.row { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+.row > * { flex: 1; min-width: 100px; }
+.row > .no-flex { flex: 0 0 auto; min-width: auto; }
+.status-line { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.85rem; background: #05050e; border: 1px solid #1e293b; border-radius: 4px; font-size: 0.75rem; color: #64748b; margin-top: 0.7rem; }
+.status-line.ok { background: rgba(74,157,106,0.08); border-color: #2d5a3d; color: #7ad19c; }
+.status-line.err { background: rgba(239,68,68,0.08); border-color: #7f1d1d; color: #f87171; }
+.status-line .dot { width: 6px; height: 6px; border-radius: 50%; background: #475569; flex-shrink: 0; }
+.status-line.ok .dot { background: #7ad19c; box-shadow: 0 0 6px #7ad19c; }
+.status-line.err .dot { background: #ef4444; }
+.hint { font-size: 0.7rem; color: #64748b; margin-top: 0.5rem; }
+.hint a { color: #f4d47a; text-decoration: none; border-bottom: 1px dotted #b8860b; }
+.drop { border: 2px dashed #334155; border-radius: 4px; padding: 1.5rem 1rem; text-align: center; cursor: pointer; position: relative; transition: all 0.15s; margin-top: 0.6rem; }
+.drop:hover { border-color: #b8860b; background: rgba(212,175,55,0.03); }
+.drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.drop .icon { font-size: 2rem; opacity: 0.5; margin-bottom: 0.4rem; }
+.drop .txt { font-size: 0.82rem; color: #94a3b8; }
+.drop .txt strong { color: #f4d47a; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.5rem; margin-top: 0.8rem; }
+.thumb { position: relative; border-radius: 4px; overflow: hidden; border: 1px solid #1e293b; aspect-ratio: 3/4; background: #000; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb .rm { position: absolute; top: 0.3rem; right: 0.3rem; background: rgba(220,38,38,0.85); color: #fff; border: none; width: 22px; height: 22px; border-radius: 50%; font-size: 0.7rem; cursor: pointer; }
+.thumb .lbl { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.2rem 0.4rem; background: linear-gradient(transparent, rgba(5,5,16,0.92)); font-size: 0.52rem; font-family: ui-monospace, monospace; color: #f4d47a; letter-spacing: 0.08em; }
+.phase { background: #0a0a18; border: 1px solid #1e293b; border-left: 2px solid #c8a8d8; border-radius: 4px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: none; }
+.phase.visible { display: block; }
+.phase-info { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; font-size: 0.72rem; font-family: ui-monospace, monospace; color: #94a3b8; }
+.queue { display: none; background: #0a0a18; border: 1px solid #1e293b; border-left: 2px solid #c8a8d8; border-radius: 4px; padding: 0.7rem 0.9rem; margin-bottom: 1rem; font-size: 0.72rem; font-family: ui-monospace, monospace; }
+.queue.visible { display: block; }
+.session-view { display: none; margin-top: 1.5rem; }
+.session-view.visible { display: block; }
+.session-header { background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(200,168,216,0.04)); border: 1px solid #1e293b; border-left: 2px solid #d4af37; border-radius: 4px; padding: 0.85rem 1rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.session-header .sh-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; color: #f4d47a; }
+.session-header .sh-sub { font-size: 0.68rem; color: #64748b; font-family: ui-monospace, monospace; }
+.tabs { display: flex; gap: 0.3rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.tab { flex: 1; min-width: 80px; padding: 0.55rem 0.4rem; text-align: center; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; background: #0a0a18; border: 1px solid #1e293b; border-radius: 4px; color: #64748b; cursor: pointer; transition: all 0.15s; font-family: inherit; position: relative; }
+.tab:hover { color: #e2e8f0; border-color: #334155; }
+.tab.active { background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(200,168,216,0.06)); border-color: #b8860b; color: #f4d47a; }
+.tab .tab-count { font-size: 0.52rem; opacity: 0.7; margin-left: 0.2rem; }
+.tab.custom { border-left: 3px solid #c8a8d8; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+.photo { background: #0a0a18; border: 1px solid #1e293b; border-radius: 4px; overflow: hidden; transition: border-color 0.2s; }
+.photo:hover { border-color: #334155; }
+.photo-img { aspect-ratio: 9/16; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
+.photo-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.photo-img .load { width: 100%; height: 100%; background: #05050e; display: flex; align-items: center; justify-content: center; color: #475569; font-size: 0.72rem; font-family: ui-monospace, monospace; position: relative; overflow: hidden; }
+.photo-img .load::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(212,175,55,0.08) 50%, transparent 70%); animation: shim 1.8s linear infinite; }
+@keyframes shim { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.photo-img .err { width: 100%; height: 100%; background: rgba(127,29,29,0.2); display: flex; align-items: center; justify-content: center; color: #f87171; font-size: 0.72rem; }
+.photo-img .photo-plan-badge { position: absolute; top: 0.4rem; right: 0.4rem; background: rgba(5,5,16,0.85); border: 1px solid #c8a8d8; color: #c8a8d8; font-size: 0.55rem; padding: 0.1rem 0.4rem; border-radius: 2px; font-family: ui-monospace, monospace; letter-spacing: 0.08em; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.photo-meta { padding: 0.7rem; border-top: 1px solid #1e293b; }
+.pbadge { display: inline-block; font-size: 0.52rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.12rem 0.4rem; border-radius: 2px; margin-right: 0.3rem; margin-bottom: 0.4rem; font-weight: 700; border: 1px solid; background: rgba(212,175,55,0.1); color: #d4af37; border-color: #8a6a0a; }
+.ptitle { font-family: 'Playfair Display', Georgia, serif; font-size: 0.9rem; color: #f4d47a; margin-bottom: 0.15rem; letter-spacing: 0.01em; }
+.psub { font-size: 0.62rem; color: #64748b; font-family: ui-monospace, monospace; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+.pblock { background: #05050e; border: 1px solid #1e293b; border-radius: 4px; padding: 0.5rem; margin-bottom: 0.4rem; position: relative; }
+.pblock.video { border-left: 2px solid #c8a8d8; }
+.plabel { font-size: 0.52rem; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; font-family: ui-monospace, monospace; margin-bottom: 0.25rem; }
+.pblock.video .plabel { color: #c8a8d8; }
+.ptext { font-size: 0.65rem; color: #94a3b8; font-family: ui-monospace, monospace; line-height: 1.5; max-height: 100px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; }
+.pcopy { position: absolute; top: 0.3rem; right: 0.3rem; font-size: 0.52rem; padding: 0.1rem 0.35rem; border: 1px solid #334155; border-radius: 2px; background: transparent; color: #64748b; cursor: pointer; }
+.pcopy:hover { color: #f4d47a; border-color: #b8860b; }
+.popen { display: block; text-align: center; margin-top: 0.5rem; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.15em; padding: 0.35rem; border: 1px solid #334155; border-radius: 4px; color: #94a3b8; text-decoration: none; font-family: 'Playfair Display', Georgia, serif; }
+.popen:hover { color: #f4d47a; border-color: #b8860b; }
+.sessions-list { max-height: 220px; overflow-y: auto; margin-top: 0.5rem; }
+.session-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.7rem; background: #05050e; border: 1px solid #1e293b; border-radius: 4px; margin-bottom: 0.35rem; font-size: 0.72rem; cursor: pointer; }
+.session-row.current { border-color: #b8860b; background: rgba(212,175,55,0.05); }
+.session-row .sr-thumb { width: 32px; height: 42px; border-radius: 2px; overflow: hidden; border: 1px solid #334155; flex-shrink: 0; background: #000; }
+.session-row .sr-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.session-row .sr-meta { flex: 1; min-width: 0; }
+.session-row .sr-title { color: #e2e8f0; font-family: 'Playfair Display', Georgia, serif; font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.session-row .sr-sub { color: #64748b; font-size: 0.6rem; font-family: ui-monospace, monospace; }
+.session-row .sr-actions { display: flex; gap: 0.25rem; flex-shrink: 0; }
+.custom-tabs-list { margin-top: 0.8rem; }
+.custom-tab-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.7rem; background: #05050e; border: 1px solid #1e293b; border-left: 3px solid #c8a8d8; border-radius: 4px; margin-bottom: 0.35rem; font-size: 0.72rem; }
+.custom-tab-item .ct-icon { font-size: 1.1rem; flex-shrink: 0; }
+.custom-tab-item .ct-meta { flex: 1; min-width: 0; }
+.custom-tab-item .ct-name { color: #c8a8d8; font-family: 'Playfair Display', Georgia, serif; font-size: 0.82rem; }
+.custom-tab-item .ct-sub { color: #64748b; font-size: 0.6rem; font-family: ui-monospace, monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.panel { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; }
+.handle { background: #0a0a18; border-top: 2px solid #b8860b; padding: 0.55rem 1rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+.handle .left { display: flex; align-items: center; gap: 0.6rem; min-width: 0; flex: 1; }
+.handle .toggle { font-family: ui-monospace, monospace; font-size: 0.72rem; color: #f4d47a; letter-spacing: 0.1em; flex-shrink: 0; }
+.handle .latest { font-size: 0.72rem; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.handle .actions { display: flex; gap: 0.3rem; }
+.handle .actions button { font-size: 0.6rem; padding: 0.2rem 0.5rem; border: 1px solid #334155; border-radius: 3px; background: transparent; color: #64748b; cursor: pointer; }
+.handle .actions button:hover { color: #f4d47a; border-color: #b8860b; }
+.panel-content { background: #05050e; border-top: 1px solid #1e293b; max-height: 60vh; overflow-y: auto; }
+.panel-content.hidden { display: none; }
+.human-log { max-height: 100px; overflow-y: auto; padding: 0.6rem 1rem; border-bottom: 1px solid #1e293b; font-family: ui-monospace, monospace; font-size: 0.7rem; }
+.human-log > div { margin-bottom: 0.2rem; }
+.human-log .t { color: #475569; } .human-log .m { color: #7ad19c; }
+.debug-log { max-height: 240px; overflow-y: auto; padding: 0.6rem 1rem; font-family: ui-monospace, monospace; font-size: 0.68rem; }
+.debug-log > div { margin-bottom: 0.15rem; word-break: break-word; }
+.debug-log .t { color: #475569; } .debug-log .info { color: #94a3b8; } .debug-log .ok { color: #7ad19c; } .debug-log .warn { color: #f4d47a; } .debug-log .err { color: #f87171; } .debug-log .api { color: #c8a8d8; }
+.toast { position: fixed; top: 1rem; left: 50%; transform: translateX(-50%) translateY(-120px); background: #0a0a18; border: 1px solid #1e293b; border-left: 3px solid #d4af37; border-radius: 4px; padding: 0.75rem 1.2rem; font-size: 0.8rem; z-index: 1000; opacity: 0; transition: transform 0.3s, opacity 0.3s; max-width: 90vw; text-align: center; }
+.toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.success { border-left-color: #7ad19c; } .toast.error { border-left-color: #ef4444; } .toast.warn { border-left-color: #f4d47a; }
+.status-bar { position: fixed; bottom: 60px; left: 0; right: 0; background: #0a0a18; border-top: 1px solid #1e293b; padding: 0.5rem 1rem; font-size: 0.7rem; font-family: ui-monospace, monospace; color: #f1f5f9; display: flex; align-items: center; gap: 0.5rem; transform: translateY(100%); transition: transform 0.3s; z-index: 30; }
+.status-bar.visible { transform: translateY(0); }
+.status-bar .spinner { width: 12px; height: 12px; border: 2px solid rgba(212,175,55,0.2); border-top-color: #d4af37; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a0a18; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+.hidden { display: none !important; }
+.empty-state { text-align: center; padding: 2rem 1rem; color: #475569; font-size: 0.78rem; font-family: 'Playfair Display', Georgia, serif; font-style: italic; }
+.checkline { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #94a3b8; margin-top: 0.7rem; cursor: pointer; }
+.checkline input { width: auto; }
+.kb-stat { font-size: 0.68rem; color: #64748b; font-family: ui-monospace, monospace; margin-top: 0.4rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<div class="kata">✦ Voanh ✦ Pressbook Créatif Auto-Évolutif ✦</div>
+<h1>Voanh Pressbook Créatif</h1>
+<p class="sub">Image réelle ou avatar · l'IA s'auto-définit · jamais deux fois la même chose</p>
+</header>
+
+<div class="banner">
+<strong>Pressbook créatif auto-évolutif :</strong> choisissez <strong class="hl-gold">ma propre image</strong> (préservation faciale via image+strength) ou <strong class="hl-violet">mon avatar</strong> (inspiré par description texte). Ajoutez des <strong class="hl-mint">onglets personnalisés</strong> (l'IA optimise votre prompt et génère 20 variations prioritaires). L'IA <strong class="hl-rose">s'auto-définit</strong> à chaque ronde, garde une <strong class="hl-gold">base de connaissances</strong> persistante et ne fait <em>jamais</em> deux fois la même chose. Quand 120 photos sont finies, elle analyse ses lacunes et enchaîne automatiquement une nouvelle ronde de 120 concepts totalement différents.
+</div>
+
+<section class="card">
+<div class="card-head"><span>🔑 Clés API Agnès</span><span class="badge" id="keyBadge">0 validée</span></div>
+<div class="card-body">
+<textarea id="keysInput" placeholder="Collez vos clés API ici, une par ligne :&#10;sk-xxxxxxxxxxxx" autocomplete="off" spellcheck="false"></textarea>
+<div class="row">
+<button class="btn btn-gold" id="validateBtn">🔐 Valider et enregistrer</button>
+<button class="btn btn-slate no-flex" id="clearKeysBtn">Effacer</button>
+</div>
+<div class="status-line" id="keyStatus"><span class="dot"></span><span id="keyStatusText">Aucune clé enregistrée</span></div>
+<div class="hint">Clé gratuite sur <a href="https://platform.agnes-ai.com" target="_blank">platform.agnes-ai.com</a> → Settings → API Keys.</div>
+</div>
+</section>
+
+<section class="card">
+<div class="card-head"><span>🖼️ Référence & Mode</span><span class="badge" id="refBadge">0 photo</span></div>
+<div class="card-body">
+<select id="modeSelect" style="margin-bottom:0.6rem;">
+<option value="image">🪞 Ma propre image — préservation faciale (image + strength)</option>
+<option value="avatar">🎭 Mon avatar — inspiré par description texte</option>
+</select>
+<label class="drop">
+<input type="file" accept="image/*" multiple id="refInput">
+<div class="icon">📸</div>
+<div class="txt"><strong>Cliquez pour ajouter votre photo</strong><br>Visage bien visible de préférence</div>
+</label>
+<div class="thumbs" id="thumbs"></div>
+</div>
+</section>
+
+<section class="card">
+<div class="card-head"><span>🎨 Onglets personnalisés</span><span class="badge" id="customBadge">0 onglet</span></div>
+<div class="card-body">
+<textarea id="customPromptInput" placeholder="Exemples :&#10;« photos de moi en cosplay de super-héros Marvel »&#10;« scènes de film noir des années 40 à Paris »&#10;« portraits dans le style de portraits royaux du 18e siècle »" style="min-height:70px;"></textarea>
+<div class="row">
+<button class="btn btn-gold" id="addCustomBtn" disabled>✨ Optimiser et ajouter (20 photos)</button>
+</div>
+<div class="hint">L'IA optimise votre prompt, crée 20 variations distinctes et les place <strong>en priorité</strong> dans la file. Ajout possible à tout moment (avant ou pendant la génération).</div>
+<div class="custom-tabs-list" id="customTabsList"></div>
+</div>
+</section>
+
+<section class="card">
+<div class="card-head"><span>📚 Sessions Pressbook</span><span class="badge" id="sessionsBadge">0 session</span></div>
+<div class="card-body">
+<div class="row">
+<button class="btn btn-slate" id="newSessionBtn">+ Nouvelle session</button>
+<button class="btn btn-slate" id="exportBtn">📤 Exporter</button>
+<button class="btn btn-slate no-flex" id="importBtn" style="position:relative;overflow:hidden;">📥 Importer<input type="file" accept=".json" id="importInput" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;"></button>
+</div>
+<div class="sessions-list" id="sessionsList"></div>
+<div class="hint" id="storageHint"></div>
+<div class="kb-stat" id="kbStat"></div>
+<div class="row">
+<button class="btn btn-slate no-flex btn-xs" id="resetKbBtn" style="color:#f87171;border-color:#7f1d1d;">🗑 Réinitialiser base de connaissances</button>
+</div>
+</div>
+</section>
+
+<button class="btn btn-gold" id="genBtn" disabled style="margin-bottom:1rem;">Lancer le pressbook</button>
+<button class="btn btn-red hidden" id="stopBtn" style="margin-bottom:1rem;">⏹ Arrêter</button>
+
+<div class="phase" id="phaseBar">
+<div class="phase-info"><span id="phaseDetail">En attente</span><span id="phaseEta"></span></div>
+</div>
+
+<div class="queue" id="queue"></div>
+
+<div class="session-view" id="sessionView">
+<div class="session-header">
+<div class="session-ref-thumb" id="sessionRefThumb"></div>
+<div style="flex:1;min-width:0;">
+<div class="sh-title" id="sessionTitle">—</div>
+<div class="sh-sub" id="sessionSub">—</div>
+</div>
+<div style="text-align:right;">
+<div class="sh-sub" id="sessionProgress">—</div>
+</div>
+</div>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="photoGrid"></div>
+</div>
+
+</div>
+
+<div class="panel">
+<div class="handle" id="panelHandle">
+<div class="left">
+<span class="toggle" id="panelToggle">▼ CONSOLE</span>
+<span class="latest" id="humanLatest">Prêt.</span>
+</div>
+<div class="actions">
+<button id="copyConsoleBtn">Copier</button>
+<button id="clearConsoleBtn">Effacer</button>
+</div>
+</div>
+<div class="panel-content hidden" id="panelContent">
+<div class="human-log" id="humanLog"></div>
+<div class="debug-log" id="debugLog"></div>
+</div>
+</div>
+
+<div class="toast" id="toast"><span id="toastText">Message</span></div>
+<div class="status-bar" id="statusBar"><div class="spinner"></div><span id="statusText">Préparation…</span></div>
+
+<script>
+'use strict';
+
+// ============ CONFIG ============
+const API_BASE = 'https://apihub.agnes-ai.com/v1';
+const MODEL_TEXT = 'agnes-2.5-flash';
+const MODEL_IMAGE = 'agnes-image-2.1-flash';
+const IMAGE_SIZE = '1024x1792';
+const CONCURRENCY_PER_KEY = 2;
+const DELAY_PER_KEY_MS = 3400;
+const REF_API_MAX_SIDE = 800;
+const REF_DISPLAY_MAX = 1280;
+const THUMB_MAX_SIDE = 100;
+const STORAGE_KEYS = { keys: 'voanh_pb_v3_keys', sessions: 'voanh_pb_v3_sessions', current: 'voanh_pb_v3_current', kb: 'voanh_pb_v3_kb', refSupport: 'voanh_pb_v3_ref_support' };
+const DEBUG_MAX = 400;
+const QUOTA_LIMIT = 3_800_000;
+const CATS_PER_ROUND = 6;
+const AGENTS_PER_CAT = 20;
+const CUSTOM_TAB_SIZE = 20;
+
+// ============ STATE ============
+const state = {
+  apiKeys: [],
+  mode: 'image',
+  referenceImages: [],
+  referenceDisplay: [],
+  referenceThumbs: [],
+  faceSentence: '',
+  sessions: [],
+  currentSession: null,
+  activeTab: null,
+  customTabs: [],
+  knowledgeBase: { version: 1, rounds: [] },
+  isRunning: false,
+  stopRequested: false,
+  roundsActive: false,
+  round: 0,
+  completed: 0,
+  total: 0,
+  startTime: 0,
+  keyIndex: 0,
+  autoContinue: true,
+  humanLog: [],
+  debugLog: [],
+  refSupport: 'unknown'
+};
+
+// File d'attente globale (partagée entre les workers et les rondes)
+const taskQueue = [];
+const pendingCustomCategories = [];
+
+// ============ UTILS ============
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const uid = () => 's_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7);
+const slug = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 30) || 'cat';
+
+function human(msg) {
+  state.humanLog.push({ t: new Date().toLocaleTimeString('fr-FR', { hour12: false }), m: msg });
+  if (state.humanLog.length > 80) state.humanLog.shift();
+  const el = $('humanLatest'); if (el) el.textContent = msg;
+  renderHuman();
+}
+function renderHuman() {
+  const el = $('humanLog'); if (!el) return;
+  el.innerHTML = state.humanLog.slice(-30).map(e => '<div><span class="t">' + e.t + '</span> <span class="m">' + esc(e.m) + '</span></div>').join('');
+  el.scrollTop = el.scrollHeight;
+}
+function debug(msg, level = 'info') {
+  state.debugLog.push({ t: new Date().toLocaleTimeString('fr-FR', { hour12: false }), m: msg, c: level });
+  if (state.debugLog.length > DEBUG_MAX) state.debugLog.shift();
+  renderDebug();
+}
+function renderDebug() {
+  const el = $('debugLog'); if (!el) return;
+  el.innerHTML = state.debugLog.slice(-200).map(e => '<div><span class="t">' + e.t + '</span> <span class="' + e.c + '">' + esc(e.m) + '</span></div>').join('');
+  el.scrollTop = el.scrollHeight;
+}
+function toast(msg, type = 'success', dur = 2500) {
+  const t = $('toast');
+  t.className = 'toast ' + type + ' visible';
+  $('toastText').textContent = msg;
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => { t.className = 'toast ' + type; }, dur);
+}
+function setStatus(txt) {
+  const b = $('statusBar');
+  if (txt) { b.classList.add('visible'); $('statusText').textContent = txt; }
+  else b.classList.remove('visible');
+}
+function setPhase(detail, eta) {
+  $('phaseBar').classList.add('visible');
+  $('phaseDetail').textContent = detail || '';
+  $('phaseEta').textContent = eta || '';
+}
+function fmtEta(s) { if (!isFinite(s) || s < 0) return ''; return s < 60 ? Math.round(s) + 's' : Math.floor(s / 60) + 'm ' + Math.round(s % 60) + 's'; }
+function getKey() {
+  if (state.apiKeys.length === 0) return '';
+  const k = state.apiKeys[state.keyIndex % state.apiKeys.length];
+  state.keyIndex++;
+  return k;
+}
+function idFromUrl(url) {
+  if (!url || typeof url !== 'string' || url.startsWith('data:')) return null;
+  try {
+    const u = new URL(url);
+    const segs = u.pathname.split('/').filter(Boolean);
+    if (!segs.length) return null;
+    const last = segs[segs.length - 1];
+    const m = last.match(/^(.*?)(\.(png|jpg|jpeg|webp|gif))?$/i);
+    return { base: u.origin + '/' + segs.slice(0, -1).join('/'), id: m[1], ext: m[2] || '.png' };
+  } catch (e) { return { base: '', id: url, ext: '' }; }
+}
+function urlFromId(o) { if (!o) return null; if (!o.base) return o.id; return o.base + '/' + o.id + (o.ext || ''); }
+
+// ============ STORAGE ============
+function estimateSize(obj) { try { return new Blob([JSON.stringify(obj)]).size; } catch (e) { return 999999; } }
+
+function loadFromStorage() {
+  try { state.apiKeys = JSON.parse(localStorage.getItem(STORAGE_KEYS.keys) || '[]'); } catch (e) { state.apiKeys = []; }
+  try { state.sessions = JSON.parse(localStorage.getItem(STORAGE_KEYS.sessions) || '[]'); } catch (e) { state.sessions = []; }
+  try { state.knowledgeBase = JSON.parse(localStorage.getItem(STORAGE_KEYS.kb) || '{"version":1,"rounds":[]}'); } catch (e) { state.knowledgeBase = { version: 1, rounds: [] }; }
+  try {
+    const cid = localStorage.getItem(STORAGE_KEYS.current);
+    state.currentSession = state.sessions.find(s => s.id === cid) || null;
+  } catch (e) { state.currentSession = null; }
+  try {
+    const rs = localStorage.getItem(STORAGE_KEYS.refSupport);
+    if (rs === 'yes' || rs === 'no') state.refSupport = rs;
+  } catch (e) {}
+}
+
+function saveSessions() {
+  let sessions = state.sessions;
+  let size = estimateSize(sessions);
+  let dropped = 0;
+  while (size > QUOTA_LIMIT && sessions.length > 1) { sessions = sessions.slice(1); size = estimateSize(sessions); dropped++; }
+  if (dropped > 0) { debug('Quota : ' + dropped + ' session(s) supprimée(s)', 'warn'); human('⚠️ ' + dropped + ' session(s) ancienne(s) supprimée(s)'); }
+  state.sessions = sessions;
+  try { localStorage.setItem(STORAGE_KEYS.sessions, JSON.stringify(sessions)); updateStorageHint(); return true; }
+  catch (e) {
+    try { const reduced = sessions.slice(-2); localStorage.setItem(STORAGE_KEYS.sessions, JSON.stringify(reduced)); state.sessions = reduced; return true; }
+    catch (e2) { return false; }
+  }
+}
+function saveKeys() { try { localStorage.setItem(STORAGE_KEYS.keys, JSON.stringify(state.apiKeys)); } catch (e) {} }
+function saveCurrentId() { try { if (state.currentSession) localStorage.setItem(STORAGE_KEYS.current, state.currentSession.id); else localStorage.removeItem(STORAGE_KEYS.current); } catch (e) {} }
+function saveKb() { try { localStorage.setItem(STORAGE_KEYS.kb, JSON.stringify(state.knowledgeBase)); updateStorageHint(); } catch (e) { debug('KB save : ' + e.message, 'err'); } }
+function saveRefSupport() { try { localStorage.setItem(STORAGE_KEYS.refSupport, state.refSupport); } catch (e) {} }
+
+function updateStorageHint() {
+  const used = estimateSize(state.sessions);
+  const pct = Math.round(used / 5_000_000 * 100);
+  $('storageHint').textContent = 'Stockage : ' + Math.round(used / 1024) + ' Ko (' + pct + '%) · ' + state.sessions.length + ' session(s) · mode ' + (state.refSupport === 'yes' ? 'image+strength ✓' : state.refSupport === 'no' ? 'texte seul' : 'à détecter');
+  $('sessionsBadge').textContent = state.sessions.length + ' session' + (state.sessions.length > 1 ? 's' : '');
+  const rounds = state.knowledgeBase.rounds.length;
+  const totalAgents = state.knowledgeBase.rounds.reduce((a, r) => a + (r.categories || []).reduce((b, c) => b + (c.agentNames || []).length, 0), 0);
+  $('kbStat').textContent = '🧠 Base de connaissances : ' + rounds + ' ronde(s) · ' + totalAgents + ' concepts mémorisés';
+}
+
+// ============ API : VALIDATION ============
+function isValidKeyFormat(k) { return typeof k === 'string' && k.startsWith('sk-') && k.length >= 15 && k.length <= 200; }
+async function quickPing(key) {
+  try {
+    const controller = new AbortController();
+    const tid = setTimeout(() => controller.abort(), 4000);
+    const res = await fetch(API_BASE + '/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: MODEL_TEXT, messages: [{ role: 'user', content: 'ok' }], max_tokens: 1 }),
+      signal: controller.signal
+    });
+    clearTimeout(tid);
+    return res.status !== 401 && res.status !== 403;
+  } catch (e) { return null; }
+}
+async function validateAndSaveKeys() {
+  const raw = $('keysInput').value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  if (raw.length === 0) { toast('Aucune clé à valider', 'error'); return; }
+  $('validateBtn').disabled = true;
+  $('validateBtn').textContent = '⏳ Validation…';
+  human('🔐 Validation de ' + raw.length + ' clé(s)…');
+  const valid = [];
+  for (let i = 0; i < raw.length; i++) {
+    const k = raw[i];
+    if (!isValidKeyFormat(k)) { debug('Clé ' + (i + 1) + ' : format invalide', 'err'); continue; }
+    const ping = await quickPing(k);
+    if (ping === false) { debug('Clé ' + (i + 1) + ' : refusée', 'err'); continue; }
+    valid.push(k); debug('Clé ' + (i + 1) + ' : OK', 'ok');
+  }
+  state.apiKeys = valid;
+  saveKeys();
+  const st = $('keyStatus');
+  if (valid.length > 0) { st.className = 'status-line ok'; $('keyStatusText').textContent = valid.length + ' clé(s) enregistrée(s) · rotation auto'; }
+  else { st.className = 'status-line err'; $('keyStatusText').textContent = 'Aucune clé valide'; }
+  $('validateBtn').disabled = false;
+  $('validateBtn').textContent = '🔐 Valider et enregistrer';
+  updateKeyBadge();
+  toast(valid.length + ' clé(s)', valid.length > 0 ? 'success' : 'error', 3000);
+}
+function updateKeyBadge() { $('keyBadge').textContent = state.apiKeys.length + ' validée' + (state.apiKeys.length > 1 ? 's' : ''); updateGenBtn(); updateCustomBtn(); }
+function updateRefBadge() { $('refBadge').textContent = state.referenceImages.length + ' photo' + (state.referenceImages.length > 1 ? 's' : ''); updateGenBtn(); }
+function updateCustomBtn() {
+  const btn = $('addCustomBtn');
+  const ok = state.apiKeys.length > 0 && !state.isRunning;
+  btn.disabled = !ok;
+}
+function updateGenBtn() {
+  const btn = $('genBtn');
+  const ok = state.apiKeys.length > 0 && state.referenceImages.length > 0 && !state.isRunning;
+  btn.disabled = !ok;
+  if (state.isRunning) btn.textContent = 'Génération en cours…';
+  else if (state.apiKeys.length === 0) btn.textContent = 'Validez vos clés API';
+  else if (state.referenceImages.length === 0) btn.textContent = 'Ajoutez votre photo';
+  else btn.textContent = 'Lancer · ronde ' + (state.knowledgeBase.rounds.length + 1) + ' (120 photos + onglets)';
+}
+
+// ============ API : ANALYSE VISAGE ============
+async function apiAnalyzeFace(dataUrl) {
+  const key = getKey(); if (!key) return null;
+  try {
+    const res = await fetch(API_BASE + '/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: MODEL_TEXT,
+        messages: [
+          { role: 'system', content: 'You are a forensic facial analyst. Return ONLY valid JSON on single lines, no markdown.' },
+          { role: 'user', content: [
+            { type: 'text', text: 'Analyze this photo. Focus on the FACE — describe precisely enough for an AI image model to recreate the SAME face.\n\nReturn JSON:\n{\n "face_description": { "gender_presentation":"","ethnicity":"","age_range":"","skin_tone":"","eye_shape":"","eye_color":"","eyebrows":"","nose":"","mouth":"","jawline":"","cheekbones":"","hair_color":"","hair_texture":"","distinctive_features":"","body_type":"","overall_impression":"" },\n "full_face_sentence": "A single dense 55-70 word sentence describing the face in full."\n}' },
+            { type: 'image_url', image_url: { url: dataUrl } }
+          ] }
+        ],
+        temperature: 0.2, max_tokens: 1200, response_format: { type: 'json_object' }
+      })
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    const c = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    try { const parsed = JSON.parse(c); return parsed.full_face_sentence ? parsed : null; } catch (e) { return null; }
+  } catch (e) { return null; }
+}
+
+// ============ API : SELF-DEFINE (auto-conscient) ============
+async function apiSelfDefineRound(faceSentence, kb, roundNumber) {
+  const key = getKey(); if (!key) return null;
+  const kbText = kb.rounds.length === 0
+    ? '(nothing yet — this is your first round)'
+    : kb.rounds.map(r => 'Round ' + r.n + ' — ' + (r.summary || '') + '\n' +
+        (r.categories || []).map(c => '  • ' + (c.icon || '·') + ' ' + c.name + ' : ' + (c.agentNames || []).join(', ')).join('\n')
+      ).join('\n\n');
+
+  const prompt = [
+    'You are the SELF-AWARE creative director AI of the Voanh Pressbook.',
+    'You know that each round must contain ' + CATS_PER_ROUND + ' categories × ' + AGENTS_PER_CAT + ' concepts = ' + (CATS_PER_ROUND * AGENTS_PER_CAT) + ' photos.',
+    'You know your PAST creative output (knowledge base below) and you NEVER repeat yourself.',
+    '',
+    'SUBJECT FACE (must remain the SAME person in every photo): ' + faceSentence,
+    '',
+    'YOUR PAST OUTPUT (all rounds already completed):',
+    kbText,
+    '',
+    'MISSION — ROUND ' + roundNumber + ':',
+    'Invent ' + CATS_PER_ROUND + ' completely NEW categories that have NEVER appeared in your past output.',
+    'Each category must contain EXACTLY ' + AGENTS_PER_CAT + ' distinct concepts.',
+    '',
+    'RULES:',
+    '- Categories must be radically different from all previous rounds (different domains, eras, styles, contexts).',
+    '- Within a category, all ' + AGENTS_PER_CAT + ' concepts must be distinct.',
+    '- Every concept must include a specific SHOT TYPE ("plan") — vary widely: close-up, medium shot, wide shot, low angle, high angle, profile, three-quarter, full body, etc.',
+    '- The face must always remain visible and recognizable.',
+    '- Include varied lighting, eras, genres, techniques, atmospheres.',
+    '- Be bold, poetic, surprising. Avoid generic prompts.',
+    '',
+    'Give each category:',
+    '- id: unique snake_case slug (max 24 chars)',
+    '- name: short French name (max 22 chars)',
+    '- icon: a single emoji',
+    '- description: one sentence describing the atmosphere',
+    '- agents: exactly ' + AGENTS_PER_CAT + ' items, each: { "name": "short label", "sub": "era/style/genre (optional)", "plan": "shot type", "prompt": "prompt directive, max 22 words" }',
+    '',
+    'Return ONLY valid JSON:',
+    '{ "summary": "one sentence describing your creative angle for this round", "categories": [ ... ] }',
+    '',
+    'All strings single-line. No markdown. No trailing commas.'
+  ].join('\n');
+
+  const res = await fetch(API_BASE + '/chat/completions', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: MODEL_TEXT,
+      messages: [
+        { role: 'system', content: 'You are a self-aware creative director AI. You ALWAYS return valid JSON matching the requested schema. No markdown.' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 1.0, max_tokens: 9000, response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) { debug('Self-define HTTP ' + res.status, 'err'); return null; }
+  const data = await res.json();
+  const c = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+  try {
+    const parsed = JSON.parse(c);
+    if (!parsed.categories || !Array.isArray(parsed.categories)) return null;
+    return parsed;
+  } catch (e) { debug('Parse self-define : ' + e.message, 'err'); return null; }
+}
+
+// ============ API : EXPAND CUSTOM PROMPT ============
+async function apiExpandCustomPrompt(userPrompt, faceSentence) {
+  const key = getKey(); if (!key) return null;
+  const prompt = [
+    'You are the creative director of the Voanh Pressbook.',
+    'A user wants a custom pressbook tab based on this request:',
+    '"""' + userPrompt + '"""',
+    '',
+    'SUBJECT FACE (must remain the SAME person in every photo): ' + faceSentence,
+    '',
+    'MISSION:',
+    'Design exactly ' + CUSTOM_TAB_SIZE + ' DISTINCT photo concepts expanding the user\'s idea.',
+    'Each concept must include a specific shot type ("plan").',
+    'Vary framing, lighting, atmosphere, expression, era, style — but stay true to the user\'s intent.',
+    'The face must remain visible and recognizable.',
+    '',
+    'Return ONLY valid JSON:',
+    '{',
+    '  "name": "short French tab name (max 22 chars)",',
+    '  "icon": "a single emoji",',
+    '  "description": "one sentence describing the tab",',
+    '  "agents": [',
+    '    { "name": "short label", "sub": "era/style (optional)", "plan": "shot type", "prompt": "prompt directive, max 22 words" }',
+    '    ... exactly ' + CUSTOM_TAB_SIZE + ' items ...',
+    '  ]',
+    '}',
+    '',
+    'All strings single-line. No markdown.'
+  ].join('\n');
+
+  const res = await fetch(API_BASE + '/chat/completions', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: MODEL_TEXT,
+      messages: [
+        { role: 'system', content: 'You are a creative director AI. You ALWAYS return valid JSON matching the requested schema. No markdown.' },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 1.0, max_tokens: 4000, response_format: { type: 'json_object' }
+    })
+  });
+  if (!res.ok) { debug('Custom expand HTTP ' + res.status, 'err'); return null; }
+  const data = await res.json();
+  const c = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+  try {
+    const parsed = JSON.parse(c);
+    if (!parsed.agents || !Array.isArray(parsed.agents)) return null;
+    return parsed;
+  } catch (e) { debug('Parse custom : ' + e.message, 'err'); return null; }
+}
+
+// ============ API : GÉNÉRATION IMAGE ============
+async function apiImage(prompt, refDataUrl, useImage) {
+  const key = getKey(); if (!key) throw new Error('Aucune clé API');
+  for (let attempt = 0; attempt < 5; attempt++) {
+    if (state.stopRequested) throw new Error('Arrêt');
+    try {
+      const sendRef = useImage && refDataUrl && state.refSupport !== 'no';
+      const body = { model: MODEL_IMAGE, prompt, n: 1, size: IMAGE_SIZE, response_format: 'url' };
+      if (sendRef) { body.image = refDataUrl; body.strength = 0.42; }
+
+      const res = await fetch(API_BASE + '/images/generations', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (res.status === 429) { await sleep([10, 20, 35, 50, 75][attempt] * 1000); continue; }
+
+      if ((res.status === 400 || res.status === 422) && sendRef) {
+        const errTxt = await res.text();
+        if (state.refSupport !== 'no') {
+          state.refSupport = 'no';
+          saveRefSupport();
+          debug('❌ Image+strength rejeté (' + res.status + ') — bascule texte seul', 'warn');
+          debug('Raison : ' + errTxt.slice(0, 160), 'warn');
+          human('⚠️ Agnès ne supporte pas image+strength — bascule texte seul');
+          updateStorageHint();
+        }
+        continue;
+      }
+
+      if (!res.ok) { const err = await res.text(); debug('HTTP ' + res.status + ' · ' + err.slice(0, 150), 'err'); throw new Error('HTTP ' + res.status); }
+
+      if (sendRef && state.refSupport === 'unknown') {
+        state.refSupport = 'yes';
+        saveRefSupport();
+        debug('✅ Image+strength CONFIRMÉ supporté — cohérence faciale maximale', 'ok');
+        human('✅ Cohérence faciale maximale (image+strength)');
+        updateStorageHint();
+      }
+
+      const data = await res.json();
+      const item = data.data && data.data[0];
+      if (item && item.url) return item.url;
+      if (item && item.b64_json) return 'data:image/png;base64,' + item.b64_json;
+      throw new Error('Réponse invalide');
+    } catch (e) {
+      if (e.message === 'Arrêt') throw e;
+      if (attempt === 4) throw e;
+      await sleep([5, 10, 20, 35][attempt] * 1000);
+    }
+  }
+  throw new Error('Échec après tentatives');
+}
+
+// ============ PROMPT BUILDER ============
+function faceLockBlock(faceSentence) {
+  return 'CRITICAL — FACE PRESERVATION: The subject\'s face MUST be IDENTICAL to the reference: "' + faceSentence + '". ' +
+    'ABSOLUTELY preserve: ethnicity, age, skin tone, eye shape, eye color, eyebrows, nose, mouth, jawline, cheekbones, hair color, distinctive features. ' +
+    'The face is the ANCHOR — the SAME person. You MAY change: hairstyle, hats, clothing, accessories, subtle makeup, expression, pose, lighting, background, era, art style. ';
+}
+function planBlock(plan) { if (!plan) return ''; return 'SHOT TYPE / PLAN: ' + plan + '. Do NOT use the reference photo\'s framing. Face must remain clearly visible. '; }
+function buildGenericPrompt(faceSentence, agent, cat) {
+  return faceLockBlock(faceSentence) + planBlock(agent.plan) +
+    'Category: ' + cat.name + (cat.description ? ' — ' + cat.description : '') + '. ' +
+    'Concept: ' + (agent.name || 'Untitled') + (agent.sub ? ' (' + agent.sub + ')' : '') + '. ' +
+    'Directive: ' + (agent.prompt || '') + '. ' +
+    'Atmosphere and setting must match the concept. ' +
+    'Hyperrealistic, ultra-detailed, film grain, natural skin texture, magazine quality. Portrait 9:16 vertical. No text, no watermark, no logo.';
+}
+function buildVideoSuggestion(photo) {
+  return 'Subject: ' + (photo.title || 'portrait') + '. ' +
+    'Action: subtle movement — gentle breathing, slow blink, slight head turn, hair moving gently. ' +
+    'Camera: slow push-in OR static tripod with micro handheld drift. ' +
+    'Style: ' + (photo.agentName || '') + ' · ' + (photo.categoryLabel || '') + '. ' +
+    'Preserve the still image\'s face, lighting, colors, and atmosphere. ' +
+    'Quality: film grain, photorealistic, real texture, 35mm. ' +
+    'Duration: 5 seconds. Aspect ratio: 9:16. No music, no text, no watermark.';
+}
+
+// ============ SESSIONS ============
+function createSession(faceAnalyses, categories) {
+  const s = {
+    id: uid(),
+    date: Date.now(),
+    mode: state.mode,
+    references: state.referenceDisplay.map((img, i) => ({ thumb: state.referenceThumbs[i], analysis: faceAnalyses[i] || null })),
+    faceSentence: state.faceSentence,
+    categories: categories || [],
+    photos: []
+  };
+  state.sessions.push(s);
+  state.currentSession = s;
+  saveSessions(); saveCurrentId();
+  return s;
+}
+
+// ============ RENDER ============
+function renderSession(session) {
+  if (!session) { $('sessionView').classList.remove('visible'); return; }
+  $('sessionView').classList.add('visible');
+  const firstRef = session.references[0];
+  $('sessionRefThumb').innerHTML = firstRef ? '<img src="' + firstRef.thumb + '" alt="">' : '';
+  $('sessionTitle').textContent = 'Pressbook · ' + new Date(session.date).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+  $('sessionSub').textContent = (session.mode === 'avatar' ? '🎭 avatar' : '🪞 image réelle') + ' · ' + session.references.length + ' réf. · ' + session.photos.length + ' photos';
+  $('sessionProgress').textContent = state.completed + ' / ' + state.total;
+  renderTabs(session); renderPhotoGrid(session);
+}
+
+function renderTabs(session) {
+  const el = $('tabs');
+  if (!session.categories || session.categories.length === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = session.categories.map(cat => {
+    const total = session.photos.filter(p => p.category === cat.id).length;
+    const expected = (cat.agents || []).length * session.references.length;
+    const active = state.activeTab === cat.id ? ' active' : '';
+    const cust = cat.isCustom ? ' custom' : '';
+    return '<button class="tab' + active + cust + '" data-tab="' + cat.id + '">' + (cat.icon || '·') + ' ' + esc(cat.name) + ' <span class="tab-count">' + total + '/' + expected + '</span></button>';
+  }).join('');
+  el.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => {
+    state.activeTab = b.dataset.tab;
+    renderTabs(session); renderPhotoGrid(session);
+  });
+}
+
+function renderPhotoGrid(session) {
+  const grid = $('photoGrid');
+  grid.innerHTML = '';
+  if (!state.activeTab && session.categories.length > 0) state.activeTab = session.categories[0].id;
+  const photos = session.photos.filter(p => p.category === state.activeTab);
+  if (photos.length === 0) { grid.innerHTML = '<div class="empty-state">Aucune photo dans cet onglet pour le moment.</div>'; return; }
+  photos.forEach(p => renderPhoto(p, session));
+}
+
+function renderPhoto(p, session) {
+  const grid = $('photoGrid');
+  if (!grid || state.activeTab !== p.category) return;
+  const card = document.createElement('div');
+  card.className = 'photo';
+  const src = p.url || (p.urlRef ? urlFromId(p.urlRef) : null);
+  let imgHtml;
+  if (src && src !== 'error') imgHtml = '<img src="' + esc(src) + '" loading="lazy" alt="">';
+  else if (p.url === 'error') imgHtml = '<div class="err">Échec</div>';
+  else imgHtml = '<div class="load">Génération…</div>';
+  const videoPrompt = p.videoPrompt || buildVideoSuggestion(p);
+  const fullPrompt = p.prompt || '';
+  card.innerHTML =
+    '<div class="photo-img">' + imgHtml +
+    (p.plan ? '<div class="photo-plan-badge">' + esc(p.plan.slice(0, 30)) + '</div>' : '') +
+    '</div>' +
+    '<div class="photo-meta">' +
+    '<span class="pbadge">' + (p.categoryIcon || '·') + ' ' + esc(p.categoryLabel || '') + '</span>' +
+    '<div class="ptitle">' + esc(p.agentName || '') + '</div>' +
+    (p.sub ? '<div class="psub">' + esc(p.sub) + '</div>' : '') +
+    (fullPrompt ? '<div class="pblock"><div class="plabel">📸 Prompt image</div><button class="pcopy" data-copy="' + esc(fullPrompt) + '">Copier</button><div class="ptext">' + esc(fullPrompt) + '</div></div>' : '') +
+    '<div class="pblock video"><div class="plabel">🎬 Suggestion vidéo</div><button class="pcopy" data-copy="' + esc(videoPrompt) + '">Copier</button><div class="ptext">' + esc(videoPrompt) + '</div></div>' +
+    (src && src !== 'error' ? '<a class="popen" href="' + esc(src) + '" target="_blank" rel="noopener">Ouvrir en grand</a>' : '') +
+    '</div>';
+  grid.appendChild(card);
+  card.querySelectorAll('[data-copy]').forEach(b => b.onclick = () => {
+    const ta = document.createElement('textarea');
+    ta.value = b.dataset.copy;
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast('Copié', 'success', 1500); } catch (e) { toast('Copie impossible', 'error'); }
+    document.body.removeChild(ta);
+  });
+}
+
+function updateQueue() {
+  const q = $('queue');
+  q.classList.add('visible');
+  const remaining = taskQueue.length;
+  q.innerHTML = '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.4rem;">' +
+    '<span style="color:#f4d47a;font-weight:700;">PHOTOS : ' + state.completed + ' / ' + state.total + '</span>' +
+    '<span style="color:#c8a8d8;">File : ' + remaining + ' · Ronde ' + state.round + '</span>' +
+    '<span style="color:#64748b;">' + (remaining > 0 ? '~' + fmtEta(remaining * 3.5 / Math.max(1, state.apiKeys.length)) : 'Terminé') + '</span>' +
+    '</div>';
+}
+
+function renderSessionsList() {
+  const el = $('sessionsList');
+  if (state.sessions.length === 0) { el.innerHTML = '<div class="empty-state" style="padding:0.8rem;font-size:0.72rem;">Aucune session enregistrée.</div>'; return; }
+  el.innerHTML = state.sessions.slice().reverse().map(s => {
+    const isCur = state.currentSession && state.currentSession.id === s.id;
+    const d = new Date(s.date).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+    const thumb = (s.references[0] && s.references[0].thumb) || '';
+    return '<div class="session-row' + (isCur ? ' current' : '') + '" data-load="' + s.id + '">' +
+      (thumb ? '<div class="sr-thumb"><img src="' + thumb + '" alt=""></div>' : '') +
+      '<div class="sr-meta"><div class="sr-title">' + s.photos.length + ' photos · ' + s.references.length + ' réf. · ' + (s.mode === 'avatar' ? '🎭' : '🪞') + '</div>' +
+      '<div class="sr-sub">' + d + (isCur ? ' · ACTUELLE' : '') + '</div></div>' +
+      '<div class="sr-actions"><button class="btn btn-slate btn-xs" data-del="' + s.id + '" style="color:#f87171;">✕</button></div>' +
+      '</div>';
+  }).join('');
+  el.querySelectorAll('[data-load]').forEach(b => b.onclick = (e) => {
+    if (e.target.tagName === 'BUTTON') return;
+    const s = state.sessions.find(x => x.id === b.dataset.load);
+    if (!s) return;
+    state.currentSession = s;
+    saveCurrentId();
+    state.activeTab = s.categories && s.categories[0] ? s.categories[0].id : null;
+    renderSession(s); renderSessionsList();
+    human('📚 Session chargée · ' + s.photos.length + ' photos');
+    toast('Session chargée', 'success');
+  });
+  el.querySelectorAll('[data-del]').forEach(b => b.onclick = (e) => {
+    e.stopPropagation();
+    if (!confirm('Supprimer cette session ?')) return;
+    state.sessions = state.sessions.filter(x => x.id !== b.dataset.del);
+    if (state.currentSession && state.currentSession.id === b.dataset.del) state.currentSession = null;
+    saveSessions(); saveCurrentId();
+    renderSessionsList(); renderSession(state.currentSession); updateStorageHint();
+    toast('Session supprimée', 'warn');
+  });
+}
+
+function renderCustomTabsList() {
+  const el = $('customTabsList');
+  if (state.customTabs.length === 0) { el.innerHTML = ''; $('customBadge').textContent = '0 onglet'; return; }
+  $('customBadge').textContent = state.customTabs.length + ' onglet' + (state.customTabs.length > 1 ? 's' : '');
+  el.innerHTML = state.customTabs.map((t, i) =>
+    '<div class="custom-tab-item"><div class="ct-icon">' + (t.icon || '✨') + '</div>' +
+    '<div class="ct-meta"><div class="ct-name">' + esc(t.name) + '</div><div class="ct-sub">' + esc(t.userPrompt || '') + '</div></div>' +
+    '<button class="btn btn-slate btn-xs" data-rmct="' + i + '" style="color:#f87171;">✕</button></div>'
+  ).join('');
+  el.querySelectorAll('[data-rmct]').forEach(b => b.onclick = () => {
+    state.customTabs.splice(parseInt(b.dataset.rmct, 10), 1);
+    renderCustomTabsList();
+  });
+}
+
+// ============ RÉFÉRENCES ============
+function compressImg(dataUrl, maxSide, quality) {
+  return new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      let { width: w, height: h } = img;
+      const s = Math.min(1, maxSide / Math.max(w, h));
+      w = Math.round(w * s); h = Math.round(h * s);
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      c.getContext('2d').drawImage(img, 0, 0, w, h);
+      res(c.toDataURL('image/jpeg', quality || 0.75));
+    };
+    img.onerror = () => res(dataUrl);
+    img.src = dataUrl;
+  });
+}
+async function handleRefFiles(files) {
+  for (const f of files) {
+    if (!f.type.startsWith('image/')) continue;
+    const dataUrl = await new Promise((res, rej) => { const r = new FileReader(); r.onload = e => res(e.target.result); r.onerror = rej; r.readAsDataURL(f); });
+    const api = await compressImg(dataUrl, REF_API_MAX_SIDE, 0.7);
+    const display = await compressImg(dataUrl, REF_DISPLAY_MAX, 0.8);
+    const tiny = await compressImg(dataUrl, THUMB_MAX_SIDE, 0.7);
+    state.referenceImages.push(api);
+    state.referenceDisplay.push(display);
+    state.referenceThumbs.push(tiny);
+  }
+  renderThumbs(); updateRefBadge();
+  human('📸 ' + state.referenceImages.length + ' photo(s) prête(s)');
+}
+function renderThumbs() {
+  const el = $('thumbs');
+  el.innerHTML = state.referenceDisplay.map((img, i) =>
+    '<div class="thumb"><img src="' + img + '" alt=""><button class="rm" data-rm="' + i + '">✕</button><div class="lbl">PHOTO ' + (i + 1) + '</div></div>'
+  ).join('');
+  el.querySelectorAll('[data-rm]').forEach(b => b.onclick = (e) => {
+    e.stopPropagation();
+    const i = parseInt(b.dataset.rm, 10);
+    state.referenceImages.splice(i, 1);
+    state.referenceDisplay.splice(i, 1);
+    state.referenceThumbs.splice(i, 1);
+    renderThumbs(); updateRefBadge();
+  });
+}
+
+// ============ CUSTOM TABS ============
+async function addCustomTabNow() {
+  const raw = $('customPromptInput').value.trim();
+  if (!raw) { toast('Entrez un prompt', 'error'); return; }
+  if (state.apiKeys.length === 0) { toast('Validez vos clés d\'abord', 'error'); return; }
+
+  $('addCustomBtn').disabled = true;
+  $('addCustomBtn').textContent = '⏳ Optimisation…';
+  human('🎨 Optimisation de votre prompt…');
+
+  // Si on est en train de générer, on a déjà une session et une faceSentence
+  // Sinon, il faut analyser la face d'abord
+  let fs = state.faceSentence;
+  if (!fs && state.referenceDisplay.length > 0) {
+    human('🔍 Analyse du visage pour contextualiser…');
+    const a = await apiAnalyzeFace(state.referenceDisplay[0]);
+    fs = a && a.full_face_sentence ? a.full_face_sentence : 'the same person as the reference photo';
+    state.faceSentence = fs;
+  }
+  if (!fs) fs = 'the subject of the reference photo';
+
+  const expanded = await apiExpandCustomPrompt(raw, fs);
+  if (!expanded || !expanded.agents || expanded.agents.length === 0) {
+    toast('L\'IA n\'a pas pu optimiser ce prompt', 'error');
+    $('addCustomBtn').disabled = false;
+    $('addCustomBtn').textContent = '✨ Optimiser et ajouter (20 photos)';
+    return;
+  }
+
+  const catId = 'custom_' + slug(expanded.name) + '_' + Date.now().toString(36);
+  const cat = {
+    id: catId,
+    name: expanded.name || 'Onglet perso',
+    icon: expanded.icon || '✨',
+    description: expanded.description || raw,
+    isCustom: true,
+    userPrompt: raw,
+    agents: expanded.agents.slice(0, CUSTOM_TAB_SIZE)
+  };
+
+  // Si on est en train de générer, on ajoute la catégorie à la session et on unshift les tâches
+  if (state.isRunning && state.currentSession) {
+    state.currentSession.categories.push(cat);
+    const session = state.currentSession;
+    const newTasks = cat.agents.map((agent, ai) => ({
+      category: catId, cat, agent, agentIdx: ai,
+      agentName: agent.name || 'Concept',
+      title: (agent.name || 'Concept') + ' · ' + cat.name,
+      sub: agent.sub || '',
+      plan: agent.plan || '',
+      prompt: buildGenericPrompt(state.faceSentence, agent, cat)
+    }));
+    taskQueue.unshift(...newTasks);
+    state.total += newTasks.length;
+    saveSessions();
+    renderTabs(session);
+    renderCustomTabsList();
+    updateQueue();
+    human('✨ Onglet « ' + cat.name + ' » ajouté en priorité (' + newTasks.length + ' photos)');
+    toast('Onglet ajouté en priorité', 'success');
+  } else {
+    // Ajout pré-génération
+    state.customTabs.push(cat);
+    renderCustomTabsList();
+    human('✨ Onglet « ' + cat.name + ' » prêt pour la prochaine génération');
+    toast('Onglet ajouté', 'success');
+  }
+
+  $('customPromptInput').value = '';
+  $('addCustomBtn').disabled = false;
+  $('addCustomBtn').textContent = '✨ Optimiser et ajouter (20 photos)';
+}
+
+// ============ PIPELINE ============
+async function worker(slot) {
+  while (!state.stopRequested) {
+    if (taskQueue.length === 0) {
+      if (!state.roundsActive) return;
+      await sleep(300);
+      continue;
+    }
+    const task = taskQueue.shift();
+    await processTask(task, slot);
+  }
+}
+
+async function processTask(task, slot) {
+  if (state.stopRequested) return;
+  const keySlot = slot % Math.max(1, state.apiKeys.length);
+  // Simple rate-limit per key slot
+  const now = Date.now();
+  const last = processTask._last || (processTask._last = {});
+  const wait = Math.max(0, (last[keySlot] || 0) + DELAY_PER_KEY_MS - now);
+  last[keySlot] = Date.now() + wait;
+  if (wait > 0) await sleep(wait);
+  if (state.stopRequested) return;
+
+  const refDataUrl = state.referenceImages[task.refIdx || 0] || state.referenceImages[0];
+  const useImage = state.mode === 'image' && refDataUrl;
+
+  let url = null;
+  try {
+    url = await apiImage(task.prompt, refDataUrl, useImage);
+    state.completed++;
+    debug('OK ' + state.completed + '/' + state.total + ' · ' + task.title, 'ok');
+  } catch (e) {
+    if (e.message === 'Arrêt') return;
+    state.completed++;
+    debug('KO · ' + task.title + ' · ' + e.message, 'err');
+    url = 'error';
+  }
+
+  const photo = {
+    category: task.category,
+    categoryLabel: task.cat.name,
+    categoryIcon: task.cat.icon,
+    refIdx: task.refIdx || 0,
+    agentIdx: task.agentIdx,
+    agentName: task.agentName,
+    title: task.title,
+    sub: task.sub,
+    plan: task.plan,
+    prompt: task.prompt,
+    videoPrompt: buildVideoSuggestion({ title: task.title, agentName: task.agentName, categoryLabel: task.cat.name }),
+    urlRef: url && url !== 'error' ? idFromUrl(url) : null,
+    url: url
+  };
+  if (state.currentSession) state.currentSession.photos.push(photo);
+
+  setPhase('📸 ' + state.completed + ' / ' + state.total + ' · ronde ' + state.round + (state.refSupport === 'no' ? ' · texte' : state.mode === 'image' ? ' · image+face' : ' · avatar'),
+    '~' + fmtEta(taskQueue.length * 3.5 / Math.max(1, state.apiKeys.length)));
+  updateQueue();
+  if (state.currentSession) $('sessionProgress').textContent = state.completed + ' / ' + state.total;
+  human('📸 ' + state.completed + '/' + state.total + ' · ' + (task.agentName || '').slice(0, 32));
+
+  if (state.activeTab === task.category) renderPhoto(photo, state.currentSession);
+  if (state.currentSession) renderTabs(state.currentSession);
+
+  if (state.completed % 10 === 0) saveSessions();
+}
+
+function buildTasksFromCategories(categories, session) {
+  const tasks = [];
+  categories.forEach(cat => {
+    (cat.agents || []).forEach((agent, ai) => {
+      tasks.push({
+        category: cat.id,
+        cat: cat,
+        agent: agent,
+        refIdx: 0,
+        agentIdx: ai,
+        agentName: agent.name || 'Concept',
+        title: (agent.name || 'Concept') + ' · ' + cat.name,
+        sub: agent.sub || '',
+        plan: agent.plan || '',
+        prompt: buildGenericPrompt(state.faceSentence, agent, cat)
+      });
+    });
+  });
+  return tasks;
+}
+
+async function runGeneration() {
+  if (state.isRunning) return;
+  if (state.apiKeys.length === 0) { toast('Validez vos clés API', 'error'); return; }
+  if (state.referenceImages.length === 0) { toast('Ajoutez une photo', 'error'); return; }
+
+  state.isRunning = true;
+  state.stopRequested = false;
+  state.completed = 0;
+  state.total = 0;
+  state.round = state.knowledgeBase.rounds.length;
+  state.startTime = Date.now();
+  state.keyIndex = 0;
+  taskQueue.length = 0;
+  pendingCustomCategories.length = 0;
+
+  $('stopBtn').classList.remove('hidden');
+  $('phaseBar').classList.add('visible');
+  $('genBtn').disabled = true;
+  $('updateCustomBtn')();
+  $('sessionView').classList.remove('visible');
+  updateCustomBtn();
+
+  human('🚀 Nouveau pressbook · mode ' + (state.mode === 'avatar' ? '🎭 avatar' : '🪞 image réelle') + ' · KB ' + state.round + ' ronde(s)');
+
+  try {
+    // === PHASE 1 : analyse visage ===
+    setPhase('🔍 Analyse approfondie du visage…', '');
+    setStatus('Analyse du visage…');
+    human('🔍 Analyse forensique de votre visage…');
+    const faceAnalyses = [];
+    for (let i = 0; i < state.referenceDisplay.length; i++) {
+      if (state.stopRequested) throw new Error('Arrêt');
+      human('🔍 Visage ' + (i + 1) + '/' + state.referenceDisplay.length + '…');
+      const a = await apiAnalyzeFace(state.referenceDisplay[i]);
+      faceAnalyses.push(a);
+      if (a) debug('Visage ' + (i + 1) + ' analysé', 'ok');
+    }
+    const validAnalysis = faceAnalyses.find(a => a && a.full_face_sentence);
+    state.faceSentence = validAnalysis ? validAnalysis.full_face_sentence : 'the same person as the reference photo, preserving every facial feature';
+    human('✅ Visage verrouillé');
+
+    // === Créer session vide au départ ===
+    const session = createSession(faceAnalyses, []);
+    state.currentSession = session;
+
+    // Ajouter les onglets personnalisés pré-générés comme catégories de la session
+    state.customTabs.forEach(c => {
+      c.isCustom = true;
+      session.categories.push(c);
+    });
+    // Réinitialiser la liste (les onglets sont maintenant dans la session)
+    state.customTabs = [];
+    renderCustomTabsList();
+
+    // Démarrer les workers
+    const concurrency = Math.min(state.apiKeys.length * CONCURRENCY_PER_KEY, 12);
+    state.roundsActive = true;
+    const workers = Array.from({ length: concurrency }, (_, i) => worker(i));
+
+    // Boucle de rondes
+    let roundNumber = state.round;
+    while (!state.stopRequested) {
+      roundNumber++;
+      state.round = roundNumber;
+      human('🌀 Ronde ' + roundNumber + ' · l\'IA s\'auto-définit…');
+      setPhase('🧠 Ronde ' + roundNumber + ' · auto-définition créative…', '');
+
+      const definition = await apiSelfDefineRound(state.faceSentence, state.knowledgeBase, roundNumber);
+      let categories = [];
+      if (definition && definition.categories && definition.categories.length > 0) {
+        // Normaliser les catégories
+        categories = definition.categories.slice(0, CATS_PER_ROUND).map((c, i) => ({
+          id: slug(c.id || c.name || ('cat_' + i)),
+          name: c.name || ('Catégorie ' + (i + 1)),
+          icon: c.icon || '✨',
+          description: c.description || '',
+          agents: (c.agents || []).slice(0, AGENTS_PER_CAT)
+        }));
+        debug('Ronde ' + roundNumber + ' : ' + categories.length + ' catégories · ' + definition.summary, 'ok');
+        human('✨ ' + categories.length + ' nouvelles catégories conçues');
+      } else {
+        debug('Auto-définition échouée — fallback minimal', 'warn');
+        // Fallback minimal : on génère des catégories génériques
+        categories = Array.from({ length: CATS_PER_ROUND }, (_, i) => ({
+          id: 'fallback_' + roundNumber + '_' + i,
+          name: 'Exploration ' + roundNumber + '.' + (i + 1),
+          icon: '✨',
+          description: 'Exploration générique',
+          agents: Array.from({ length: AGENTS_PER_CAT }, (_, j) => ({
+            name: 'Concept ' + (j + 1),
+            plan: ['close-up', 'medium shot', 'wide shot', 'low angle', 'high angle'][j % 5],
+            prompt: 'elegant artistic composition, cinematic light, film grain'
+          }))
+        }));
+      }
+
+      // Ajouter les catégories à la session
+      categories.forEach(c => session.categories.push(c));
+
+      // Construire les tâches
+      const tasks = buildTasksFromCategories(categories, session);
+      state.total += tasks.length;
+      taskQueue.push(...tasks);
+      updateQueue();
+      renderTabs(session); renderSessionsList();
+      human('🎬 Ronde ' + roundNumber + ' : ' + tasks.length + ' photos en file');
+
+      // Attendre que la file de cette ronde soit traitée
+      while ((taskQueue.length > 0) && !state.stopRequested) await sleep(600);
+
+      if (state.stopRequested) break;
+
+      // Mise à jour de la base de connaissances
+      state.knowledgeBase.rounds.push({
+        n: roundNumber,
+        date: Date.now(),
+        summary: definition ? (definition.summary || '') : 'Fallback round',
+        categories: categories.map(c => ({
+          id: c.id,
+          name: c.name,
+          icon: c.icon,
+          agentNames: (c.agents || []).map(a => a.name || 'Concept')
+        }))
+      });
+      saveKb();
+      human('🧠 Base de connaissances : ' + state.knowledgeBase.rounds.length + ' ronde(s) mémorisée(s)');
+      saveSessions(); updateStorageHint();
+
+      // Continuer indéfiniment (jusqu'à stop ou quota)
+    }
+
+    if (state.stopRequested) throw new Error('Arrêt');
+
+  } catch (e) {
+    if (e.message === 'Arrêt') human('⏹ Arrêté');
+    else { debug('Erreur : ' + e.message, 'err'); human('❌ Erreur : ' + e.message); }
+    saveSessions();
+  } finally {
+    state.roundsActive = false;
+    // Laisser les workers se terminer proprement
+    await sleep(800);
+    state.isRunning = false;
+    state.stopRequested = false;
+    $('stopBtn').classList.add('hidden');
+    updateGenBtn(); setStatus(null); updateCustomBtn();
+    if (state.currentSession) renderSession(state.currentSession);
+    renderSessionsList();
+    toast(state.completed + ' photo(s) générée(s)', state.completed > 0 ? 'success' : 'error', 4000);
+  }
+}
+
+function stopGeneration() {
+  if (!state.isRunning) return;
+  state.stopRequested = true;
+  human('⏹ Arrêt demandé…');
+}
+
+// ============ EXPORT / IMPORT ============
+function exportSessions() {
+  const data = { version: 3, app: 'voanh-pb', exported: Date.now(), sessions: state.sessions, knowledgeBase: state.knowledgeBase };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'voanh-pressbook-' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('Exporté', 'success');
+}
+function importSessions(file) {
+  const r = new FileReader();
+  r.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const incoming = data.sessions || data;
+      if (!Array.isArray(incoming)) throw new Error('Format invalide');
+      const existing = new Set(state.sessions.map(s => s.id));
+      const added = incoming.filter(s => s.id && !existing.has(s.id));
+      state.sessions = state.sessions.concat(added);
+      if (data.knowledgeBase && data.knowledgeBase.rounds) {
+        const existingN = new Set(state.knowledgeBase.rounds.map(r => r.n));
+        data.knowledgeBase.rounds.forEach(r => { if (!existingN.has(r.n)) state.knowledgeBase.rounds.push(r); });
+        state.knowledgeBase.rounds.sort((a, b) => a.n - b.n);
+        saveKb();
+      }
+      saveSessions(); renderSessionsList(); updateStorageHint();
+      toast(added.length + ' session(s) importée(s)', 'success');
+    } catch (err) { toast('Import impossible : ' + err.message, 'error'); }
+  };
+  r.readAsText(file);
+}
+
+// ============ INIT ============
+function bind() {
+  $('validateBtn').addEventListener('click', validateAndSaveKeys);
+  $('clearKeysBtn').addEventListener('click', () => {
+    $('keysInput').value = '';
+    state.apiKeys = []; saveKeys();
+    $('keyStatus').className = 'status-line';
+    $('keyStatusText').textContent = 'Aucune clé enregistrée';
+    updateKeyBadge(); toast('Clés effacées', 'warn');
+  });
+  $('modeSelect').addEventListener('change', (e) => { state.mode = e.target.value; debug('Mode : ' + state.mode, 'api'); });
+  $('refInput').addEventListener('change', (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length) handleRefFiles(files);
+    e.target.value = '';
+  });
+  $('addCustomBtn').addEventListener('click', addCustomTabNow);
+  $('genBtn').addEventListener('click', runGeneration);
+  $('stopBtn').addEventListener('click', stopGeneration);
+  $('newSessionBtn').addEventListener('click', () => {
+    state.currentSession = null; saveCurrentId();
+    $('sessionView').classList.remove('visible');
+    renderSessionsList();
+    human('🆕 Nouvelle session'); toast('Nouvelle session', 'success');
+  });
+  $('exportBtn').addEventListener('click', exportSessions);
+  $('importInput').addEventListener('change', (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (f) importSessions(f);
+    e.target.value = '';
+  });
+  $('resetKbBtn').addEventListener('click', () => {
+    if (!confirm('Réinitialiser la base de connaissances ? L\'IA repartira de zéro (les sessions restent).')) return;
+    state.knowledgeBase = { version: 1, rounds: [] };
+    saveKb();
+    updateStorageHint();
+    toast('Base de connaissances réinitialisée', 'warn');
+  });
+
+  // Console
+  const handle = $('panelHandle'), content = $('panelContent'), toggleText = $('panelToggle');
+  let open = false;
+  handle.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') return;
+    open = !open;
+    content.classList.toggle('hidden', !open);
+    toggleText.textContent = (open ? '▲' : '▼') + ' CONSOLE';
+  });
+  $('copyConsoleBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const txt = state.debugLog.map(d => d.t + ' ' + d.m).join('\n');
+    const ta = document.createElement('textarea');
+    ta.value = txt;
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); toast('Console copiée', 'success', 1500); } catch (err) { toast('Copie impossible', 'error'); }
+    document.body.removeChild(ta);
+  });
+  $('clearConsoleBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    state.debugLog = []; renderDebug();
+    toast('Console effacée', 'warn', 1200);
+  });
+
+  // Restore
+  loadFromStorage();
+  if (state.apiKeys.length > 0) {
+    $('keysInput').value = state.apiKeys.join('\n');
+    $('keyStatus').className = 'status-line ok';
+    $('keyStatusText').textContent = state.apiKeys.length + ' clé(s) restaurée(s)';
+  }
+  $('modeSelect').value = state.mode;
+  updateKeyBadge(); updateRefBadge();
+  renderSessionsList(); updateStorageHint(); renderCustomTabsList(); updateCustomBtn();
+  if (state.currentSession) {
+    state.activeTab = state.currentSession.categories && state.currentSession.categories[0] ? state.currentSession.categories[0].id : null;
+    renderSession(state.currentSession);
+    human('📚 Session restaurée · ' + state.currentSession.photos.length + ' photos');
+  }
+  human('👋 Prêt · ajoutez votre photo, choisissez un mode, lancez.');
+  debug('Voanh Pressbook Créatif Auto-Évolutif v3', 'ok');
+  debug('KB : ' + state.knowledgeBase.rounds.length + ' ronde(s) · mode ' + state.mode + ' · refSupport=' + state.refSupport, 'api');
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind);
+else bind();
+</script>
+</body>
+</html>
